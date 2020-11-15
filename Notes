@@ -1,0 +1,994 @@
+1. JS is a scripting or programming language that allows you to omplement complex features on web pages
+-webpages works well with JS
+-Bringing action to webpages we use JS.
+-JS is used at the Client-side
+-Server side (on server, using node.js)
+
+2. Variables are containers to store data values
+- var, let, const are reserved keywords to variables
+- we use (=) to assign a value to a variable
+- In JS variables are case sensitive
+-In JS variable dataType is determine from what is assigned to that variable
+
+
+Examples:
+var name;
+undefined
+var name = "JavaScript"
+undefined
+name
+"JavaScript"
+---------------------------------------------------------------------------------
+var Name = "JS"
+undefined
+Name
+"JS"
+name
+"JavaScript"
+
+3. Rules
+- Names can contain letters, digits, underscores, and dollar signs
+-No limit to the lenth of the variable name
+- Names can begin with letter, $ and _
+-Reserved words like (switch, if else) cannot be used as names
+Examples
+---------
+var hello99_$ = "hey:"
+undefined
+hello99_$
+"hey:"
+
+var _hello = 9;
+undefined
+_hello
+9
+
+var isAvailable = true;
+undefined
+isAvailable
+true
+
+4.Comment
+-Single line comment
+-multi lines comment
+
+Example:
+/*Multi lines comment*/
+
+5. 8 basic data types of JS
+- Number
+- string
+- bolean
+-bigint
+-undefined
+-null
+-object
+-symbol
+
+5B: Rest types are object in some form of
+-Function
+- array
+-date
+-math
+-String
+etc
+
+NUMBER
+--------
+Is for numbers of any kind: integers or floating-point, integers are limited by +-(2^53-1)
+Examples
+----------
+var num = 123
+undefined
+var num1 = 34.787
+undefined
+var num3= -123
+undefined
+var num =0
+undefined
+var num = Infinity
+undefined
+var num = NaN
+undefined
+VAR NUM = NaN
+VM1196:1 Uncaught SyntaxError: Unexpected identifier
+Var num = NaN
+VM1216:1 Uncaught SyntaxError: Unexpected identifier
+num
+NaN
+
+STRING
+---------
+Anything in between double ("") and backtick(``) is a string
+Examples
+----------
+var first = "Felix"
+undefined
+
+var first = 'Doe'
+undefined
+
+var first = `Kofi`
+undefined
+
+var num = '1'
+undefined
+
+var boleanString = "true"
+undefined
+
+BOOLEAN
+------
+It always return TRUE or FALSE
+
+var isValid = true;
+undefined
+var Invalid = flase;
+VM1654:1 Uncaught ReferenceError: flase is not defined
+    at <anonymous>:1:15
+(anonymous) @ VM1654:1
+var Invalid = false;
+undefined
+
+BIGINT
+---------
+-BigInt is a special numeric type that provides support for integers of arbitrary length.
+-BigInt is created by appending (n) to the end or by BigInt constructor.
+Example
+-------
+var bigValue = 123455n
+undefined
+var bigValue = BigInt(98898)
+undefined
+var bigValu1 = BigInt(98898)
+undefined
+bigValu1
+98898n
+
+Undefined
+---------
+-This is data type is for unassigned values
+- If a variable is declared,but not assigned JS automatically initialized it with (undefined)
+
+Example
+---------
+var xyz
+undefined
+xyz
+undefined
+
+NULL
+------
+it is a special data type which represent "nothing" or "empty" or "value unknown"
+EXAMPLE:
+-------
+var subject = null
+
+undefined
+subject
+null
+
+OBJECT
+--------
+-It's a complex data type, rest are primitive
+-JS objects are container for named values called properties and methods.
+Three ways to create an object:
+----------------------------------
+- Object Literal
+var x = {}
+var detail = {
+namee: "Felix"
+}
+
+EXAMPLE
+----------
+var obj = {
+"name": "Felix",
+"country": "Ghana",
+"Company": "AmaliTech",
+"isAvailable": true,
+getName: function(){
+return "Hello Felix"
+}
+
+}
+undefined
+obj.name
+"Felix"
+obj
+{name: "Felix", country: "Ghana", Company: "AmaliTech", isAvailable: true, getName: ƒ}
+obj.getName
+ƒ (){
+return "Hello Felix"
+}
+obj.country
+"Ghana"
+
+var obj1={};
+undefined
+obj1.name = "salesForce"
+"salesForce"
+obj1
+{name: "salesForce"}name: "salesForce"__proto__: Object
+obj1["age"]=45
+45
+obj1
+{name: "salesForce", age: 45}
+
+
+- Using Object constructor
+--------------------------
+
+var x = new Object();
+x.name = "Felix";
+
+- Using Object.create()
+var obj = {
+name: "felix";
+}
+
+var newObj = Object.create(obj)
+
+Example:
+--------
+var obj = new Object()
+undefined
+obj
+{}
+obj.name="SalesForce"
+"SalesForce"
+obj
+{name: "SalesForce"}
+
+
+- Object.createMethod
+--------------------------
+var obj ={name:"SalesForce"}
+undefined
+var newObj = Object.create(obj)
+undefined
+newObj
+{}
+newObj.name
+"SalesForce"
+
+//Or go about it this way
+undefined
+var obj2 =Object.create({})
+undefined
+obj2
+{}
+obj2.name
+undefined
+
+KEY Points:
+1. You can access the object properties using dot and array notation
+2. array notation is useful when you have a space in your property name
+3. use delete operator to delete the property or method
+4. Fetch all keys using object keys()
+5. Convert Object to string using JSON.stringify(object) and String to object using JSON.parse(string)
+
+
+6. We have learnt dot and array notation
+
+var obj = {
+
+ "full name": "Felix Ackuayi",
+  "country": "Accra"
+}
+
+undefined
+obj.full name
+VM3223:1 Uncaught SyntaxError: Unexpected identifier
+
+//In array notation you cant call a property with a space in its name. It is appropriate to you this approach when dealing with server because you cant tell the naming conversion used
+undefined
+obj["full name"]
+"Felix Ackuayi"
+obj["country"]
+"Accra"
+
+
+7.How to fetch keys of an Object
+
+EXAMPLE:
+
+var obj = {
+"Full Name": "Felix Ackuayi",
+"Country": "Ghana"
+}
+undefined
+Object.keys(obj)
+(2) ["Full Name", "Country"]
+0: "Full Name"
+1: "Country"
+length: 2
+__proto__: Array(0)
+
+8.hOW TO DELETE Property from an Object:
+Example:
+
+var obj = {
+"Full Name": "Felix Ackuayi",
+"Country": "Ghana"
+}
+undefined
+delete obj.name
+true
+
+9. How to convert Object to String AND FROM string to Object
+
+Example:
+
+var obj ={"full name": "Felix Ackuayi"}
+undefined
+JSON.stringify(obj)
+"{"full name":"Felix Ackuayi"}"
+var str = JSON.stringify(obj)
+undefined
+str
+"{"full name":"Felix Ackuayi"}"
+JSON.parse(str)
+{full name: "Felix Ackuayi"}
+
+10. Symbol:
+ES6 introduces a new primitive type for JS: Symbols. It get created using the factory function Symbol()
+-Each time the symbol() function is called, a unique symbol is returned
+Example: var symbol = Symbol()
+
+Symbol()
+Symbol()
+var symbol = Symbol()
+undefined
+symbol
+Symbol()
+var symbolWithDescription = Symbol("description")
+undefined
+symbolWithDescription
+Symbol(description)
+var foo = new Symbol('Accra');
+var bar = new Symbol('Tarkwa');
+VM4559:1 Uncaught TypeError: Symbol is not a constructor
+    at new Symbol (<anonymous>)
+    at <anonymous>:1:11
+(anonymous) @ VM4559:1
+var foo =  Symbol('Accra');
+var bar =  Symbol('Tarkwa');
+undefined
+foo
+Symbol(Accra)
+bar
+Symbol(Tarkwa)
+foo === bar
+false
+---------------------------------------------------------------------------------
+var user = {};
+var email = Symbol();
+
+undefined
+user.name = "Felix"
+"Felix"
+user
+{name: "Felix"}
+user[email]="felix@aol.com"
+"felix@aol.com"
+user
+{name: "Felix", Symbol(): "felix@aol.com"}name: "Felix"Symbol(): "felix@aol.com"__proto__: Object
+Object.keys(user)
+["name"]0: "name"length: 1__proto__: Array(0)
+-----------------------------------------------------------------------------------------------
+
+11. TypeOf Operator
+-The typeof operator is used to get the dataType of its operand
+- It is always returns a string of the data type
+- The operand can be either a literal or a data structure such as a (variable, a function, or an object).
+The operator returns the data type.
+
+EX: Syntax typeof operand or typeof(operand)
+
+//number
+undefined
+typeof 23
+"number"
+typeof 23.878
+"number"
+typeof Infinity
+"number"
+typeof -Infinity
+"number"
+type -23
+VM5542:1 Uncaught ReferenceError: type is not defined
+    at <anonymous>:1:1
+(anonymous) @ VM5542:1
+typeof -23
+"number"
+//String
+undefined
+typeof ""
+"string"
+typeof ''
+"string"
+typeof ``
+"string"
+typeof "Kofi"
+"string"
+typeof "true"
+"string"
+
+//Boolen
+undefined
+typeof true
+"boolean"
+typeof false
+"boolean"
+
+//undefined
+undefined
+var x
+undefined
+
+//Symbol
+undefined
+typeof Symbol
+"function"
+
+//null
+undefined
+typeof null
+"object"
+//object
+undefined
+typeof {}
+"object"
+//tricky
+undefined
+//tricky question
+undefined
+typeof (typeof 1)
+"string"
+//the typeof in bracket is number in a string and typeof number in a string is STRING
+undefined
+typeof !!(-1)
+"boolean"
+typeof !-1
+"boolean"
+typeof!!_1
+VM6357:1 Uncaught ReferenceError: _1 is not defined
+    at <anonymous>:1:1
+(anonymous) @ VM6357:1
+typeof !!-1
+"boolean"
+!!-1
+true
+!-1
+false
+typeof function(){}
+"function"
+typeof new Date()
+"object"
+
+12. TYPE COERCION
+
+- Type coercion is the process of converting value from one type to another (such as string to number, object to a boolean, and so on )
+
+Coercion is of teo types
+1. Explicit - Conversion that use in-built function
+Example: String(), Number(), and Boolean()
+
+2. Implicit - Converions that aren't obvious and done by the compiler
+- Example:  +"hello"
+
+EXAMPLES
+---------
+
+//Explicit (String)
+undefined
+String(23)
+"23"
+String(undefined)
+"undefined"
+String(null)
+"null"
+String("23")
+"23"
+String(true)
+"true"
+//Number
+undefined
+Number(23)
+23
+Number(undefined)
+NaN
+Number(null)
+0
+Number("hello")
+NaN
+Number(NaN)
+NaN
+Number(true)
+1
+Number(false)
+0
+Number([])
+0
+Number(["33"])
+33
+Number(["33","34"])
+NaN
+
+//Boolean
+undefined
+Boolean(2)
+true
+Boolean("true")
+true
+Boolean(0)
+false
+Boolean(1)
+true
+Boolean(122n)
+true
+Boolean(0n)
+false
+Boolean(null)
+false
+Boolean([])
+true
+Boolean(false)
+false
+//Implict Conversion
+undefined
+"Takoradi"+"Anaji"
+"TakoradiAnaji"
+"Takoradi"+"Anaji"+"12789"
+"TakoradiAnaji12789"
+100+"world"
+"100world"
+//Whenever + and a string either side of this operator both value become string
+undefined
+"World"+10
+"World10"
+
+100 + null + 20 + "world\"
+VM7943:1 Uncaught SyntaxError: Invalid or unexpected token
+100 + null + 20 + "world"
+"120world"
+100 + null + 20 + "world\n"
+"120world
+"
+100 + null + 20 + "world"
+"120world"
+Number(null)
+0
+100+200+undefined+"hey"
+"NaNhey"
+Number(undefined)
+NaN
+var x ={}
+undefined
+x+"hey"
+"[object Object]hey"
+
+
+13. EQUALITY Comparison
+- Abstract equality comparison (Ex: 100 == "100")
+- Strict equality comparison (Ex: 100 === "100")
+-Object.is() ( strict comparison plus cover all edges cases)
+
+EXAMPLES:
+---------
+100 == "100"
+true
+true == "true"
+false
+100 ==="100"
+false
+-0 === 0
+true
+NaN === NaN
+false
+Object.is(-0,0)
+false
+Object.is(-0,0)
+false
+Object.is(-0,NaN)
+false
+Object.is(NaN,NaN)
+true
+Object.is("100", "100")
+true
+Object.is("100", 100)
+false
+
+14. OPERATORS:
+JS operators are used to assign values, compare values, perform arithemic operations and more
+
+Categories of Operators
+-Arithmetic Operators
+-Comparison Operators
+-LogicalOperators
+-Assignment Operators
+-Conditional Operators
+
+//Arithmetic Operator
+undefined
+var x = 100
+undefined
+x++ //post increment ..value increment after execution
+100
+x
+101
+x
+101
+var y = 20
+undefined
+++y
+21
+y
+21
+--y
+20
+2 > 3
+false
+3>2
+true
+10 !==10
+false
+10 !=="10"
+true
+"hello" > "Hello"
+true
+"hello" > "Hello" //check it from ASCII PRINTABLE CHARACTERS (theasciicode.com.ar)
+true
+104 > 74
+true
+"h".charCodeAt()
+104
+
+//Logical Operators
+undefined
+[] || "hey"
+[]
+var x = [] || "hey"
+undefined
+x
+[]
+Boolean([])
+true
+var x = 0 || "hey"
+undefined
+x
+"hey"
+var f =0 && 'felix'
+undefined
+f
+0
+if(0 && 'nik'){
+
+alert("hey");
+}
+undefined
+!0
+true
+!Boolean(0)
+true
+!"hey"
+false
+
+//Assignment Operators
+undefined
+var x = 10
+undefined
+x +=20
+30
+x
+30
+x +=20
+50
+x *=20
+1000
+
+-Ternary Operator
+------------------
+JS includes special operator called ternary operator : ? that assigns a value to a variable based on some condition. This is like short form of
+if-statement
+
+//Ternary Operators
+undefined
+var x = "felix"
+undefined
+var isAvailable = name === 'felix' ? "present" : "absent"
+undefined
+isAvailable
+"absent"
+var isAvailable = x === 'felix' ? "present" : "absent"
+undefined
+isAvailable
+"present"
+var isAvailable = name === 'felix' ? "present" : "absent"
+undefined
+var isAvailable = name === 'felix' ? "present" : "absent"
+undefined
+var isAvailable = x === 'felix1' ? "present" : "absent"
+undefined
+isAvailable
+"absent"
+
+-Conditional Statement
+---------------------
+JS supports conditional statements which are used to perform different actions based on different conditions
+- If - Use to specify a block of code to be executed, if  SPECIFIED condition is true
+-Else - Use else to specify a block of code to be executed, if the same condition is false
+- Else-If- Used else if to specify a new condition to test,if the first condition is false
+-Switch - Use Switch to select one of many blocks of code to be executed
+
+//if
+var value = 0
+if(value){
+   console.log("success")
+}
+undefined
+//if
+var value = 10
+if(value){
+   console.log("success")
+}
+VM10211:4 success
+undefined
+//if else
+undefined
+var name = "atsu"
+if(name === "atsuF"){
+console.log("success")
+
+}else{
+    console.log("failed")
+}
+VM10428:6 failed
+undefined
+//if else if
+undefined
+var letter = "A"
+if(letter === "A"){
+console.log("Apple"
+}else if(letter === "B"){
+ console.log("Banana")
+}else{
+console.log("No idea")
+}
+VM10725:3 Uncaught SyntaxError: missing ) after argument list
+var letter = "A"
+if (letter === "A"){
+console.log("Apple")
+}else if(letter === "B"){
+ console.log("Banana")
+}else{
+console.log("No idea")
+}
+VM10744:3 Apple
+undefined
+
+
+//Switch Statement
+var day = 2; //="1", 1 strict comaprison
+var text1 = null
+switch (day) {
+    case 0:
+      text1 = "Today is Saturday";
+       break;
+
+    case 1:
+          text1="Today is Sunday";
+           break;
+    default:
+      text1 = "Looking forward to the weekend";
+}
+
+
+"Looking forward to the weekend"
+
+
+var day = 1; //="1", 1 strict comaprison
+var text1 = null
+switch (day) {
+    case 0:
+      text1 = "Today is Saturday";
+       break;
+
+    case 1:
+          text1="Today is Sunday";
+           break;
+    default:
+      text1 = "Looking forward to the weekend";
+}
+
+
+"Today is Sunday"
+
+15. (var) Vrs (const) Vrs (let)
+-var
+a. Before the advent of ES6, var declaration ruled as King
+b Var is global scoped
+c. There are issues associated with variables declared with var i.e Hoisting
+
+-Let
+a. It solves the hoisting problem
+b, let is blocked scoped
+c. let can be updated but not re-declared
+
+-const
+a. It solves the hositing problem
+b. const is blocked scoped
+c. const cannot be updated or re-declared ** except object
+
+Example: Var
+//In JS there is a concept called hoisting, that
+console.log(n)
+var n = "10"
+VM11322:2 undefined
+undefined
+var n
+console.log(n)
+
+n = "15"
+VM11420:2 10
+"15"
+
+Example: let
+---------------
+if(true){
+let name = "felix"
+}
+
+console.log(name)
+VM11751:5 atsu
+undefined
+if(true){
+let nameLet = "felix"
+}
+
+console.log(nameLet)
+VM11778:5 Uncaught ReferenceError: nameLet is not defined
+    at <anonymous>:5:13
+
+
+ //Const
+ --------
+ const name = "joy"
+ undefined
+ const name = "hello"
+ VM106:1 Uncaught SyntaxError: Identifier 'name' has already been declared
+ const name = "hello"
+ VM111:1 Uncaught SyntaxError: Identifier 'name' has already been declared
+ const userDetail ={
+ name: "felix"
+ }
+ undefined
+ userDetail.name='SALESfORCE"
+ VM234:1 Uncaught SyntaxError: Invalid or unexpected token
+ userDetail.name='salesForce'
+ "salesForce"
+ userDetail
+ {name: "salesForce"}
+ const userDetail ={
+
+ }
+ VM352:1 Uncaught SyntaxError: Identifier 'userDetail' has already been declared
+
+ 16. String Interpolation
+
+ String interpolation allows you to embed expressions in the string
+ - Template strings use bacl-ticks (``) rather tham the single or double quotes
+
+ Example:
+ var name = "SalesForce"
+ console.log(`hello, ${name}`)
+
+ "hello" + ""+ "world"
+ "helloworld"
+ "hello" + " "+ "world"
+ "hello world"
+ var name = "joy"
+ undefined
+ `hello ${name}`
+ "hello joy"
+ `hello
+ ${name}`
+ "hello
+ joy"
+ `hello ${new Date().toDateString}`
+ "hello function toDateString() { [native code] }"
+ `hello ${new Date().toDateString()}`
+ "hello Sun Nov 15 2020"
+
+ 17. STRINGS METHODS
+ a. (toLowerCase())- convert a string to lowercase letter
+ b (toUpperCase()) - converts a string to uppercase letters
+ c. (trim())- Remove whitespace from both sides of a string
+ d. trimStart() - Remove whitespace from start of a string
+ e. trimEnd() - Remove whitespace from end sides of a string
+ f. substr() - Extracts parts of a string ,but does not change the original string
+ g. subString()- Extracts parts of a string, but change the original string
+ h. replace()- searches a string for a specified value, or a regular expression, annd returns a new string
+ i. indexof() - returns the position of the first occurance of a specified value in a string
+ j. include(): method determines whether a string contains the characters of a specified string.\\
+ k. split()- split a string into an array of substrings, and returns the new arrays
+
+
+ var str = "Hello Everyone"
+ undefined
+ str.toLocaleLowerCase()
+ "hello everyone"
+ str.toLocaleUpperCase
+ ƒ toLocaleUpperCase() { [native code] }
+ str.toLocaleUpperCase()
+ "HELLO EVERYONE"
+
+ var str = "Hello SalesForce Guy"
+ undefined
+ var str = "  Hello SalesForce Guy   "
+ undefined
+ str.trim()
+ "Hello SalesForce Guy"
+ var str = "  Hello SalesForce Guy   "
+ undefined
+ str.trimStart
+ ƒ trimStart() { [native code] }
+ str.trimStart()
+ "Hello SalesForce Guy   "
+ str.trimEnd()
+ "  Hello SalesForce Guy"
+ //Substring(start, end)
+ undefined
+ str.trimEnd()
+ "  Hello SalesForce Guy"
+ var str = "  Hello SalesForce Guy   "
+ undefined
+ var str = "Hello SalesForce Guy"
+ undefined
+ str.substring(6)
+ "SalesForce Guy"
+ str.substring(6, 16)
+ "SalesForce"
+ str.substring(6, 10)
+ "Sale"
+ //Substr(start, length)
+ undefined
+ var str = "Hello World!";
+ undefined
+ str.substr(1,4)
+ "ello"
+ //Split convert string into array
+ undefined
+ str.split("")
+ (12) ["H", "e", "l", "l", "o", " ", "W", "o", "r", "l", "d", "!"]
+ str.split(" ")
+ (2) ["Hello", "World!"]
+ str.split("", 3)
+ (3) ["H", "e", "l"]
+ //What's the result of the below code?
+
+ let sum = 0;
+ for (let i = 0; i < 5; i++) {
+     for (let j = 0; j < 2; j++) {
+         if (i >= 2) {
+             continue;
+         }
+         sum = sum + i + j;
+     }
+ }
+ console.log(sum); // ???
+ VM1616:12 4
+ undefined
+ var stro = "Hello Worls!";
+ undefined
+ stro.indexOf("Worls")
+ 6
+ stro.replace("HelloGee", "salesForce")
+ "Hello Worls!"
+ stro.replace("Hello", "salesForce")
+ "salesForce Worls!"
+ str.includes("Hello")
+ true
+ str.includes("Hellod")
+ false
