@@ -1,0 +1,1868 @@
+OBJECT, FUNCTIONS, CLASSES
+-----------------------------
+1. Arrays                       14. Object freeze
+2.Arrays Method                 15.  Spread Vs Rest Operator
+3. Looping in JS                16. Object Prototype and Prototye Chain
+4. Scope                        17. Object Inheritance
+5. Hoisting                     18. Class and class inheritance in JS
+6.Strict Mode                   19. JavaScript Decorators
+7. 'this' keyword in JS         20. Modules exporting in JS
+8.Functions in JS               21. Modules importing in JS59-
+9. Arrow Function
+10. Closures
+11. Object Destructuring
+12. Date Object
+13. Date Methods
+
+1. ARRAYS
+------------
+1. An array is a special type of variable, which can store multiple values using special syntax
+2. Every value is associated with numeric index starting with O.
+3. JS array can store multiple element of different data types
+4. An array in JS can be defined and initialised in two ways, array literal and Array constructor syntax.
+
+SYNTAX
+-------
+a. var arrayName = [elem1, elem2, ....elem]
+
+Syntax Array constructor
+1. var arrayName = new Array();
+2. var arrayName = new Array(Number length);
+3. var arrayName = new Array(element1, element2, element3, ... elementN)
+
+//Array Literal
+undefined
+var arr = []
+undefined
+arr
+[]length: 0__proto__: Array(0)
+
+var stringArray = ["joy","peace","Love"];
+undefined
+
+var numericArray = [1,2,3,4];
+undefined
+
+var decimalArray = [1.1,1.2,1.3,1.4];
+undefined
+
+var booleanArray =[true,false,false,true];
+undefined
+
+var mixedArray = [1, "two", "three", 4]
+undefined
+mixedArray
+(4) [1, "two", "three", 4]
+
+----------------------------------------------
+ //Array Constructor
+undefined
+var arr = new Array();
+undefined
+arr
+[]
+var stringArray = new Array();
+undefined
+stringArray[0]= 2
+2
+stringArray
+[2]
+stringArray[1] = "Kofi"
+"Kofi"
+stringArray
+(2) [2, "Kofi"]
+var numericArray = new Array(3);
+undefined
+numericArray
+(3) [empty × 3]
+numericArray.length
+3
+numericArray[0] = 1;
+1
+numericArray[1] = 2
+2
+numericArray[2] =3
+3
+numericArray
+(3) [1, 2, 3]
+var mixedArray = new Array(1, "Kofi",40, "Joy")
+undefined
+mixedArray
+(4) [1, "Kofi", 40, "Joy"]
+microphone.length
+undefined
+mixedArray.length
+4
+-----------------------------------------------------------------------------
+2. Array Methods - Are methods performed on arrays
+
+1. push() - Adds one or more elements at the end of an array and returns the new length of the array
+2. pop()- Removes the last element from an array and returns that element
+3.shift()- remove the first element and return that element
+4. unshift() - add the element to the front of an array and return new array length
+5. reverse() - reverse the elements of an array
+6. splice() - adds and remove elements from array
+7.indexOf() - Returns the index of the first occurrence of the specified element in the  array, or -1 if it is not found
+8. lastIndexOf - Returns the index of the last occurrence of the specified element in the array, or -1 if it is not found.
+9. join() - Returns string of all the elements separated by the specified separator
+10. slice() - Returns a new array with specified start to end elements
+11. concat() - Returns new array by combining values of array that is specified as parameter with existing array values.
+
+OTHER FORMS OF ARRAY METHODS
+------------------------
+1. map() - loop over the array and return new array based on the value return
+2. every() - return true or false f every element in the array satisfy the condition
+3. filter() - return new array with all the elements that satisfy the condition
+4. some() -return true if at least one element in the array satisfy
+5. sort() - sort the element of an array
+6. reduce() - this method reduces the array to a single value (left to right)
+7. reduceRight() - this method reduces the array to a single value (right to left)
+
+
+
+//Push and Pop example:
+---------------------
+var x = ["a","b","c","d"]
+undefined
+x.push("e");
+5
+x
+(5) ["a", "b", "c", "d", "e"]
+x.pop()
+"e"
+x
+(4) ["a", "b", "c", "d"]
+
+//SHIFT AND UNSHIFT EXAMPLE
+---------------------------
+var x = ["a","b","c","d"]
+undefined
+x
+(4) ["a", "b", "c", "d"]
+x.shift()
+"a"
+x
+(3) ["b", "c", "d"]
+x.unshift(4)
+4
+x
+(4) [4, "b", "c", "d"]
+
+//REVERSE
+------------
+var x = ["a","b","c","d"]
+undefined
+x.reverse()
+(4) ["d", "c", "b", "a"]
+x
+(4) ["d", "c", "b", "a"]
+
+//SPLICE
+-------
+var x = ["a","b","c","d"]
+undefined
+x.splice(1,1); //THIS Means move to index 1 and remove one item from that index
+["b"]
+x
+(3) ["a", "c", "d"]
+
+x.splice(1,2);//this means move to index 1 and start removing two items from that index
+(2) ["c", "d"]
+x
+["a"]
+
+x.splice(1,0, "hurray"); //this means at index 1 insert a value called hurray. 0 means there nothing to remove.
+[]
+x
+(2) ["a", "hurray"]
+
+//INDEXOF
+--------
+var x = ["a","b","c","d"]
+undefined
+x.indexOf("c")
+2
+x.indexOf("g")
+-1
+
+
+//lastIndexOf()
+----------------
+var x = ["a","b","c","d"]
+undefined
+x.lastIndexOf("d")
+3
+
+//Join()
+-----------
+var x = ["a","b","c","d"]
+undefined
+x
+(4) ["a", "b", "c", "d"]
+x.length
+4
+x.join('')
+"abcd"
+x
+(4) ["a", "b", "c", "d"]
+x.join('-')
+"a-b-c-d"
+
+//SLICE
+-----------
+//slice - returns new array
+undefined
+var x = ["a","b","c","d"]
+undefined
+var newArr = x.slice(1, 3)
+undefined
+newArr
+(2) ["b", "c"]
+x
+(4) ["a", "b", "c", "d"]
+
+
+//CONCAT
+-----------
+var x = ["a","b","c","d"]
+undefined
+var y = [1,2,3,4]
+undefined
+var z = x.concat(y)
+undefined
+
+//MAP
+------------------------------
+//array of object
+var x = [
+
+    {name: "a", age: 10},
+    {name: "b", age: 20},
+    {name: "c", age: 30},
+    {name: "d", age:40}
+
+]
+undefined
+x
+(4) [{…}, {…}, {…}, {…}]
+0: {name: "a", age: 10}
+1: {name: "b", age: 20}
+2: {name: "c", age: 30}
+3: {name: "d", age: 40}
+length: 4__proto__: Array(0)
+
+x.map(function(currItem, index, actualArr){//in function we pass paramters. 1st parameter will be current Item.When you run the loop it takes the 1st and 2nd Item as currentElement .And 2nd parameter is Index and 3rd parameter is an array.Index will start with (0,1,2,3,etc) and actualArr reference to the x variable array in this example
+
+return{"key": currItem.name, "value":currItem.age}
+
+}) //This takes a call-back function. Callback is a function passed as an arguement to another function
+(4) [{…}, {…}, {…}, {…}]
+0: {key: "a", value: 10}
+1: {key: "b", value: 20}
+2: {key: "c", value: 30}
+3: {key: "d", value: 40}
+length: 4__proto__: Array(0)
+
+//MAP: Example 2
+------------------
+x.map(function(currItem, index, actualArr){//in function we pass paramters. 1st parameter will be current Item.When you run the loop it takes the 1st and 2nd Item as currentElement .And 2nd parameter is Index and 3rd parameter is an array.Index will start with (0,1,2,3,etc) and actualArr reference to the x variable array in this example
+
+console.log("currItem", currItem)
+console.log("index", index)
+console.log("actualArr", actualArr)
+
+return{"key": currItem.name, "value":currItem.age}
+}) //This takes a call-back function. Callback is a function passed as an arguement to another function
+
+VM15635:3 currItem
+{name: "a", age: 10}
+VM15635:4 index 0
+VM15635:5 actualArr
+(4) [{…}, {…}, {…}, {…}]
+0: {name: "a", age: 10}
+1: {name: "b", age: 20}
+2: {name: "c", age: 30}
+3: {name: "d", age: 40}
+length: 4
+__proto__: Array(0)
+
+VM15635:3 currItem
+{name: "b", age: 20}
+VM15635:4 index 1
+VM15635:5 actualArr
+(4) [{…}, {…}, {…}, {…}]
+0: {name: "a", age: 10}
+1: {name: "b", age: 20}
+2: {name: "c", age: 30}
+3: {name: "d", age: 40}
+length: 4
+__proto__: Array(0)
+
+VM15635:3 currItem
+{name: "c", age: 30}
+VM15635:4 index 2
+VM15635:5 actualArr
+(4) [{…}, {…}, {…}, {…}]
+0: {name: "a", age: 10}
+1: {name: "b", age: 20}
+2: {name: "c", age: 30}
+3: {name: "d", age: 40}
+length: 4
+__proto__: Array(0)
+
+VM15635:3 currItem
+{name: "d", age: 40}
+VM15635:4 index 3
+VM15635:5 actualArr
+(4) [{…}, {…}, {…}, {…}]
+0: {name: "a", age: 10}
+1: {name: "b", age: 20}
+2: {name: "c", age: 30}
+3: {name: "d", age: 40}
+length: 4
+__proto__: Array(0)
+
+(4) [{…}, {…}, {…}, {…}]
+0: {key: "a", value: 10}
+1: {key: "b", value: 20}
+2: {key: "c", value: 30}
+3: {key: "d", value: 40}
+length: 4
+__proto__: Array(0)
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+//Every Method
+---------------
+//array of object
+var x = [
+
+    {name: "a", age: 10},
+    {name: "b", age: 20},
+    {name: "c", age: 30},
+    {name: "d", age:40}
+
+]
+undefined
+x.every(function(currItem, index, actualArr){
+
+return currItem.age>8
+
+})
+true
+x.every(function(currItem, index, actualArr){
+
+return currItem.age>50
+
+})
+false
+
+//FILTER - array of object
+-----------------------------
+var x = [
+
+    {name: "a", age: 10},
+    {name: "b", age: 20},
+    {name: "c", age: 30},
+    {name: "d", age:40}
+
+]
+undefined
+x
+(4) [{…}, {…}, {…}, {…}]
+x.filter(function(currItem, index, actuallArr){
+return currItem.age>=20
+
+})
+(3) [{…}, {…}, {…}]
+0: {name: "b", age: 20}
+1: {name: "c", age: 30}
+2: {name: "d", age: 40}
+length: 3
+__proto__: Array(0)
+
+--------------------------------------------
+//Some method - array of object
+--------------------------------------
+var x = [
+
+    {name: "a", age: 10},
+    {name: "b", age: 20},
+    {name: "c", age: 30},
+    {name: "d", age:40}
+
+]
+undefined
+x.some(function(currItem, index, actualArr){
+return currItem.age>20
+
+})
+true
+
+-------------------------------------------------------------------------------------------------------------
+//Sorting Method - array of object
+
+
+//array of object
+var x = [
+
+    {name: "a", age: 10},
+    {name: "b", age: 6},
+    {name: "c", age: 30},
+    {name: "d", age:4}
+
+]
+undefined
+x.sort(function(a,b){//This takes two values, 1st and 2nd elements
+
+return a.age - b.age //if we are subtracting from a-b it means we sorting from ascending order.
+
+})
+(4) [{…}, {…}, {…}, {…}]
+0: {name: "d", age: 4}
+1: {name: "b", age: 6}
+2: {name: "a", age: 10}
+3: {name: "c", age: 30}
+length: 4
+__proto__: Array(0)
+
+
+Example 2 Sort-Reverse:
+---------------------------
+var x = [
+
+    {name: "a", age: 10},
+    {name: "b", age: 6},
+    {name: "c", age: 30},
+    {name: "d", age:4}
+
+]
+undefined
+x.sort(function(a,b){//This takes two values, 1st and 2nd elements
+
+return b.age - a.age //if we are subtracting from b-a it means we sorting from ascending order.
+
+})
+(4) [{…}, {…}, {…}, {…}]
+0: {name: "c", age: 30}
+1: {name: "a", age: 10}
+2: {name: "b", age: 6}
+3: {name: "d", age: 4}
+length: 4
+__proto__: Array(0)
+
+
+Example 3: sorting
+-------------------
+//array of object
+var x = [
+
+    {name: "a", age: 10},
+    {name: "b", age: 6},
+    {name: "c", age: 30},
+    {name: "d", age:4}
+
+]
+undefined
+x.sort(function(a,b){//This takes two values, 1st and 2nd elements
+
+return (a.name>b.name) ? 1 :(a.name<b.name) ? -1: 0
+
+})
+(4) [{…}, {…}, {…}, {…}]
+0: {name: "a", age: 10}
+1: {name: "b", age: 6}
+2: {name: "c", age: 30}
+3: {name: "d", age: 4}
+length: 4__proto__: Array(0)
+
+x.sort(function(a,b){//This takes two values, 1st and 2nd elements
+
+return (a.name<b.name) ? 1 :(a.name>b.name) ? -1: 0
+
+})
+(4) [{…}, {…}, {…}, {…}]
+0: {name: "d", age: 4}
+1: {name: "c", age: 30}
+2: {name: "b", age: 6}
+3: {name: "a", age: 10}
+length: 4__proto__: Array(0)
+--------------------------------------------------------------------------------------------------
+
+//Reduce Method
+--------------------
+
+var numbers = [10,30,50]
+undefined
+numbers.reduce(function(total, currItem, index, actualArr){//the first argument is the initial or previous value returned from the function
+
+  console.log("total", total);
+  console.log("current value is", currItem)
+
+   return total + currItem;
+
+},0)//this means if you initialise your total with 0 it will start with 0
+
+VM17361:3 total 0
+
+VM17361:4 current value is 10
+VM17361:3 total 10
+
+VM17361:4 current value is 30
+VM17361:3 total 40
+
+VM17361:4 current value is 50
+90
+--------------------------------------------------------------------------------------------------------------------------------
+//ReduceRight Method
+--------------------
+var numbers = [10,30,50]
+undefined
+numbers.reduceRight(function(total, curr, index, actualArr){//the first argument is the initial or previous value returned from the function. This curr value start from 50
+
+  console.log("total", total);
+  console.log("current value is", curr)
+
+   return total + curr;
+
+},0)//this means if you initialise your total with 0 it will start with 0
+
+VM17732:3 total 0
+
+VM17732:4 current value is 50
+VM17732:3 total 50
+
+VM17732:4 current value is 30
+VM17732:3 total 80
+
+VM17732:4 current value is 10
+90
+==============================================================================================================================================================
+
+LOOPING IN JAVASCRIPT
+----------------------
+a. for loop
+b.forEach
+c.for-of
+d. For-in
+5. While loop
+6. do while
+
+//FOR-LOOP
+-----------
+const alphabet = [
+    {name: 'A'},
+    {name: 'B'},
+    {name: 'C'},
+    {name: 'D'}
+
+]
+undefined
+//FOR LOOP
+undefined
+
+for(i=0; i<alphabet.length; i= i+1){
+
+console.log("alphabet is", alphabet[i].name)
+}
+
+VM18097:3  alphabet is A
+VM18097:3  alphabet is B
+VM18097:3  alphabet is C
+VM18097:3  alphabet is D
+undefined
+
+
+//FOREACH
+---------
+const alphabet = [
+             {name: 'A'},
+             {name: 'B'},
+             {name: 'C'},
+             {name: 'D'}
+
+         ]
+
+         alphabet
+         (4) [{…}, {…}, {…}, {…}]
+         0: {name: "A"}
+         1: {name: "B"}
+         2: {name: "C"}
+         3: {name: "D"}
+         length: 4
+         __proto__: Array(0)
+
+         alphabet.forEach(function(currItem, index, actualArr){
+
+          console.log("alphabet is ", currItem.name)
+         })
+
+         VM18350:3  alphabet is  A
+         VM18350:3  alphabet is  B
+         VM18350:3  alphabet is  C
+         VM18350:3  alphabet is  D
+         undefined
+---------------------------------------------------------------------------------------------------------------------
+NOTE: Whenever we have to break a Loop we use For-Loop and foreach can't be used . Example below
+
+for(i=0; i<alphabet.length; i= i+1){
+
+console.log("alphabet is", alphabet[i].name)
+if (alphabet[i].name === 'A'){
+ break;
+}
+}
+VM18431:3 alphabet is A
+undefined
+-----------------------------------------------------------------------------------------------------------
+//For-of Loop - It is used only when we already know the number of iterations.
+..............
+const alphabet = [
+    {name: 'A'},
+    {name: 'B'},
+    {name: 'C'},
+    {name: 'D'}
+
+]
+VM18441:1 Uncaught SyntaxError: Identifier 'alphabet' has already been declared
+alphabet
+(4) [{…}, {…}, {…}, {…}]
+0: {name: "A"}
+1: {name: "B"}
+2: {name: "C"}
+3: {name: "D"}
+length: 4__proto__: Array(0)
+
+for(let alphabe of alphabet){//current element of the actual array
+console.log("Alphabet is ", alphabe.name);
+
+}
+
+VM18662:2       Alphabet is  A
+VM18662:2       Alphabet is  B
+VM18662:2       Alphabet is  C
+VM18662:2       Alphabet is  D
+undefined
+
+//For of Loop also help to break a Loop
+undefined
+
+for(let alphabe of alphabet){//current element of the actual array
+console.log("Alphabet is ", alphabe.name);
+if(alphabe.name === "A"){
+break;
+}
+
+}
+Alphabet is  A
+------------------------------------------------------------------------------------------------
+//for-in Loop
+------------
+//For-in Loop, it works on object
+undefined
+
+let oldCar = {
+  make: 'Toyota',
+  model: 'Tercel',
+  year: '1996'
+};
+undefined
+
+for(let key in oldCar){ //key is the properties (make,model,year)
+ console.log(`${key}-->${oldCar[key]}`);
+}
+VM19088:2 make-->Toyota
+VM19088:2 model-->Tercel
+--------------------------------------------------------------------------------------------------------
+//While-loop -Used only when the number of iteration are not exactly known
+-------------
+var a = 0;
+while(a<10){
+console.log('num is = ', a);
+a = a+1;
+
+}
+VM160:3 num is =  0
+VM160:3 num is =  1
+VM160:3 num is =  2
+VM160:3 num is =  3
+VM160:3 num is =  4
+VM160:3 num is =  5
+VM160:3 num is =  6
+VM160:3 num is =  7
+VM160:3 num is =  8
+VM160:3 num is =  9
+10
+-------------------------------------------------------------------------------------------------------------------------
+//The do-while
+var numb ;
+do{//it runs the interation before checking for the condition
+
+ let input = prompt('Please enter a number between 1 -10')
+
+  numb = parseInt(input);
+
+}while(numb < 10);
+12
+================================================================================================================================================
+
+SCOPE
+--------
+Scope in JS refers to the current context of code, which determines the accessibility of variables to JS.
+
+Two(2) Types of scope
+---------------------
+a.Global
+b. Local
+
+By default in JS rootscope is the 'window' object and any variable or function you create get attached to the window object.
+
+Functions have access to the variables present in root scope/
+
+NOTE: If you assign a value to a variable that has not been declared, it will automatically become a GLOBAL VARIABLE.
+-------------------------------------------------------------------------------------------------------------------------
+//wINDOW IS AN OBJECT that is the root of our browser.So whenever we create a variable it's global, the variable is automatically attached to the window
+undefined
+var dummy = 'dum';
+undefined
+window.dummy
+"dum"
+//Local scope is a scope where the variable can be accessed within a blocked scope. blocked scope is a local scope.{}
+undefined
+function logColor(){
+ let color = 'blue'
+
+ console.log(color);
+
+}
+
+undefined
+logColor();
+VM1245:4 blue
+undefined
+
+color //color cant be accessed because it is a local scope
+VM1311:1 Uncaught ReferenceError: color is not defined
+    at <anonymous>:1:1
+
+--------------------------------------------------------------------------------------
+//local scope: example 2:
+
+if(true){
+
+let color = 'green'
+console.log(color);
+}
+console.log(color);
+VM1469:4 green
+VM1469:6 Uncaught ReferenceError: color is not defined
+    at <anonymous>:6:13
+
+-------------------------------------------------------------------------------------------
+Global Scope :
+
+//Global scope
+undefined
+var color = 'blue'
+
+function returnSkyColor(){
+
+return color;
+
+}
+undefined
+returnSkyColor()
+"blue"
+
+console.log(color)
+VM1713:1 blue
+undefined
+----------------------------------------------------------------------------------------------------------------
+//scope pollution - Is when we have too many global variables that exist  in the global name space. Or when we use variables across different scopes. It makes it to keep track of our variables acncestor
+undefined
+let num = 50;
+function logNum(){
+num = 100;
+console.log(num);
+
+}
+logNum();
+console.log(num)
+VM2367:4 100
+VM2367:8 100
+undefined
+---------------------------------------------------------------------------------------------------------------
+================================BEGINNING OF HOISTING============================================================================
+HOISTING:
+- Is JS default behavior of moving declarations to the top of the current scope
+-Variables and constants declared with (let) or (const) are not hoisted
+- JS only hoists declarations, not initializations
+-function definition hoisting only occurs for function declarations, not function expressions
+
+
+console.log(hoist)
+var hoist = 'hell'
+VM2506:1 undefined
+undefined
+//internally JS initialise the variable before we display .It  brings the variable declaration to the top just like below
+
+undefined
+var hoist
+console.log(hoist)
+hoist = 'hello'
+VM2890:2 hell
+"hello"
+var hoist
+console.log(hoist)
+hoist = 'hello'
+VM2893:2 hello
+"hello"
+----------------------------------------------------------------------------------------------------------------------------
+HOISTING : EXAMPLE #2
+
+function hoistFun(){
+
+console.log(message); //calling message before the variable declaration below which is inside the blockscope.JS hoist the variable to the top of console within the scope by default
+var message = 'Hello hoisting'
+
+}
+undefined
+
+--------------------------------------------------------------------------------------------------------------------------
+s() //This will returns error because function expression is never hoisted
+
+var s = function(){
+  console.log('Definition not hoisted!');
+};
+VM222:1 Uncaught TypeError: s is not a function
+    at <anonymous>:1:1
+(anonymous) @ VM222:1
+--------------------------------
+s() //This will return a value because function definition get hoisted but function expression never hoisted
+
+function s (){
+  console.log('Definition not hoisted!');
+};
+VM318:4 Definition not hoisted!
+undefined
+================================END OF HOISTING============================================================================
+
+================================BEGIN OF STRICT MODE============================================================================
+By enabling strict mode, we can eliminates some JS silent errors by changing them to throw erroes
+
+"Use strict" directive is used to enable strict mode in JS;
+
+-Using a variable, without declaring it, is not allowed
+-Deleting a variable ( or Object) is not allowed
+- Duplicating a parameter name is not allowed
+
+EXAMPLE1:
+----------
+
+"use strict"
+"use strict"
+x = 3.14
+3.14
+"use strict"
+xbb =3.14
+VM425:2 Uncaught ReferenceError: xbb is not defined
+    at <anonymous>:2:5
+
+EXAMPLE 2:
+---------
+"use strict"
+var x23 = 3.14;
+delete x23;
+VM561:3 Uncaught SyntaxError: Delete of an unqualified identifier in strict mode.
+
+EXAMPLE 3:
+
+"use strict";
+"use strict"
+function x(p1, p1){};
+undefined
+"use strict";
+function x(p1,p1){
+
+
+}
+
+
+EXAMS EXAMPLE:
+
+var variable = 10;
+function test(){
+  console.log(variable);
+  var variable = 20;
+  console.log(variable);
+
+}
+test()
+
+VM996:3 undefined
+VM996:5 20
+undefined
+
+EXAMS EXAMPLE 2:
+
+var variable = 10;
+function test(){
+  console.log(variable);
+  variable = 20;
+  console.log(variable);
+
+}
+test()
+VM1010:3 10
+VM1010:5 20
+undefined
+
+
+
+================================END OF STRICT MODE============================================================================
+
+
+
+
+================================BEGINING OF 'this' KEYWORD'============================================================================
+
+this keyword refers to the object it belongs to
+1. In a method, this refers to the owner object
+2. Alone, this refers to the global object
+3. In a function, this belongs to the global object
+4. In a function, in strict mode, this is undefined
+5. In an event, this refers to the element that received the event
+6. Methods like call(), and apply() can refer this to any object
+
+EXAMPLE 1:
+
+var person = {
+firstName: "Kofi",
+lastName:  "Ackuayi",
+id      :    1,
+getFullName: function(){//this is a method
+console.log(this)
+return this.firstName + " " + this.lastName;
+
+}
+
+};
+
+undefined
+person.getFullName()
+VM1477:6 {firstName: "Kofi", lastName: "Ackuayi", id: 1, getFullName: ƒ}
+"Kofi Ackuayi"
+
+
+EXAMPLE 2:
+
+//2. THIS ALONE IS GLOBAL
+undefined
+this
+Window {0: Window, 1: Window, window: Window, self: Window, document: document, name: "", location: Location, …}0: Window {window: Window, self: Window, document: document, name: "", location: Location, …}1: Window {window: Window, self: Window, location: Location, closed: false, frames: Window, …}$: ƒ $(id)LocalNTP: ƒ LocalNTP()alert: ƒ alert()assert: ƒ assert(condition, opt_message)assertInstanceof: ƒ assertInstanceof(value, type, opt_message)assertNotReached: ƒ assertNotReached(opt_message)atob: ƒ atob()blur: ƒ blur()btoa: ƒ btoa()caches: CacheStorage {}cancelAnimationFrame: ƒ cancelAnimationFrame()cancelIdleCallback: ƒ cancelIdleCallback()captureEvents: ƒ captureEvents()chrome: {embeddedSearch: {…}, loadTimes: ƒ, csi: ƒ}clearInterval: ƒ clearInterval()clearTimeout: ƒ clearTimeout()clientInformation: Navigator {vendorSub: "", productSub: "20030107", vendor: "Google Inc.", maxTouchPoints: 1, userActivation: UserActivation, …}close: ƒ close()closed: falsecolorArrayToHex: ƒ colorArrayToHex(color)configData: {googleBaseUrl: "https://www.google.com/", isAccessibleBrowser: false, isGooglePage: false, translatedStrings: {…}}confirm: ƒ confirm()createImageBitmap: ƒ createImageBitmap()crypto: Crypto {subtle: SubtleCrypto}customElements: CustomElementRegistry {}defaultStatus: ""defaultstatus: ""devicePixelRatio: 3.0000001192092896document: documentexternal: External {}fetch: ƒ fetch()find: ƒ find()focus: ƒ focus()frameElement: nullframes: Window {0: Window, 1: Window, window: Window, self: Window, document: document, name: "", location: Location, …}getChromeUILanguage: ƒ getChromeUILanguage()getComputedStyle: ƒ getComputedStyle()getSelection: ƒ getSelection()history: History {length: 1, scrollRestoration: "auto", state: null}indexedDB: IDBFactory {}innerHeight: 1742innerWidth: 980isSecureContext: truelength: 2localStorage: Storage {length: 0}location: Location {ancestorOrigins: DOMStringList, href: "chrome-search://local-ntp/local-ntp.html", origin: "chrome-search://local-ntp", protocol: "chrome-search:", host: "local-ntp", …}locationbar: BarProp {visible: true}matchMedia: ƒ matchMedia()menubar: BarProp {visible: true}moveBy: ƒ moveBy()moveTo: ƒ moveTo()name: ""navigator: Navigator {vendorSub: "", productSub: "20030107", vendor: "Google Inc.", maxTouchPoints: 1, userActivation: UserActivation, …}onabort: nullonafterprint: nullonanimationend: nullonanimationiteration: nullonanimationstart: nullonappinstalled: nullonauxclick: nullonbeforeinstallprompt: nullonbeforeprint: nullonbeforeunload: nullonblur: nulloncancel: nulloncanplay: nulloncanplaythrough: nullonchange: nullonclick: nullonclose: nulloncontextmenu: nulloncuechange: nullondblclick: nullondevicemotion: nullondeviceorientation: nullondeviceorientationabsolute: nullondrag: nullondragend: nullondragenter: nullondragleave: nullondragover: nullondragstart: nullondrop: nullondurationchange: nullonemptied: nullonended: nullonerror: nullonfocus: nullonformdata: nullongotpointercapture: nullonhashchange: nulloninput: nulloninvalid: nullonkeydown: nullonkeypress: nullonkeyup: nullonlanguagechange: nullonload: nullonloadeddata: nullonloadedmetadata: nullonloadstart: nullonlostpointercapture: nullonmessage: nullonmessageerror: nullonmousedown: nullonmouseenter: nullonmouseleave: nullonmousemove: nullonmouseout: nullonmouseover: nullonmouseup: nullonmousewheel: nullonoffline: nullononline: nullonpagehide: nullonpageshow: nullonpause: nullonplay: nullonplaying: nullonpointercancel: nullonpointerdown: nullonpointerenter: nullonpointerleave: nullonpointermove: nullonpointerout: nullonpointerover: nullonpointerrawupdate: nullonpointerup: nullonpopstate: nullonprogress: nullonratechange: nullonrejectionhandled: nullonreset: nullonresize: nullonscroll: nullonsearch: nullonseeked: nullonseeking: nullonselect: nullonselectionchange: nullonselectstart: nullonstalled: nullonstorage: nullonsubmit: nullonsuspend: nullontimeupdate: nullontoggle: nullontransitionend: nullonunhandledrejection: nullonunload: nullonvolumechange: nullonwaiting: nullonwebkitanimationend: nullonwebkitanimationiteration: nullonwebkitanimationstart: nullonwebkittransitionend: nullonwheel: nullopen: ƒ open()openDatabase: ƒ openDatabase()opener: nullorigin: "chrome-search://local-ntp"outerHeight: 640outerWidth: 360pageXOffset: 0pageYOffset: 0parent: Window {0: Window, 1: Window, window: Window, self: Window, document: document, name: "", location: Location, …}performance: Performance {timeOrigin: 1605444543463.1968, onresourcetimingbufferfull: null, eventCounts: EventCounts, timing: PerformanceTiming, navigation: PerformanceNavigation, …}person: {firstName: "Kofi", lastName: "Ackuayi", id: 1, getFullName: ƒ}personalbar: BarProp {visible: true}postMessage: ƒ postMessage()print: ƒ print()prompt: ƒ prompt()queueMicrotask: ƒ queueMicrotask()releaseEvents: ƒ releaseEvents()requestAnimationFrame: ƒ requestAnimationFrame()requestIdleCallback: ƒ requestIdleCallback()resizeBy: ƒ resizeBy()resizeTo: ƒ resizeTo()rgbComponentToHex: ƒ rgbComponentToHex(c)s: ƒ s()screen: Screen {availWidth: 360, availHeight: 640, width: 360, height: 640, colorDepth: 24, …}screenLeft: 0screenTop: 0screenX: 0screenY: 0scroll: ƒ scroll()scrollBy: ƒ scrollBy()scrollTo: ƒ scrollTo()scrollX: 0scrollY: 0scrollbars: BarProp {visible: true}self: Window {0: Window, 1: Window, window: Window, self: Window, document: document, name: "", location: Location, …}sessionStorage: Storage {length: 0}setInterval: ƒ setInterval()setTimeout: ƒ setTimeout()showDirectoryPicker: ƒ showDirectoryPicker()showOpenFilePicker: ƒ showOpenFilePicker()showSaveFilePicker: ƒ showSaveFilePicker()speechSynthesis: SpeechSynthesis {pending: false, speaking: false, paused: false, onvoiceschanged: null}status: ""statusbar: BarProp {visible: true}stop: ƒ stop()styleMedia: StyleMedia {type: "screen"}test: ƒ test()toolbar: BarProp {visible: true}top: Window {0: Window, 1: Window, window: Window, self: Window, document: document, name: "", location: Location, …}trustedTypes: TrustedTypePolicyFactory {emptyHTML: TrustedHTML, emptyScript: TrustedScript, defaultPolicy: null}variable: 20visualViewport: VisualViewport {offsetLeft: 0, offsetTop: 0, pageLeft: 0, pageTop: 0, width: 980, …}webkitCancelAnimationFrame: ƒ webkitCancelAnimationFrame()webkitRequestAnimationFrame: ƒ webkitRequestAnimationFrame()webkitRequestFileSystem: ƒ webkitRequestFileSystem()webkitResolveLocalFileSystemURL: ƒ webkitResolveLocalFileSystemURL()webkitStorageInfo: DeprecatedStorageInfo {}window: Window {0: Window, 1: Window, window: Window, self: Window, document: document, name: "", location: Location, …}x: ƒ x(p1, p1)Infinity: InfinityAbortController: ƒ AbortController()AbortSignal: ƒ AbortSignal()AbsoluteOrientationSensor: ƒ AbsoluteOrientationSensor()Accelerometer: ƒ Accelerometer()AggregateError: ƒ AggregateError()AnalyserNode: ƒ AnalyserNode()Animation: ƒ Animation()AnimationEffect: ƒ AnimationEffect()AnimationEvent: ƒ AnimationEvent()AnimationPlaybackEvent: ƒ AnimationPlaybackEvent()AnimationTimeline: ƒ AnimationTimeline()Array: ƒ Array()ArrayBuffer: ƒ ArrayBuffer()Atomics: Atomics {load: ƒ, store: ƒ, add: ƒ, sub: ƒ, and: ƒ, …}Attr: ƒ Attr()Audio: ƒ Audio()AudioBuffer: ƒ AudioBuffer()AudioBufferSourceNode: ƒ AudioBufferSourceNode()AudioContext: ƒ AudioContext()AudioDestinationNode: ƒ AudioDestinationNode()AudioListener: ƒ AudioListener()AudioNode: ƒ AudioNode()AudioParam: ƒ AudioParam()AudioParamMap: ƒ AudioParamMap()AudioProcessingEvent: ƒ AudioProcessingEvent()AudioScheduledSourceNode: ƒ AudioScheduledSourceNode()AudioWorklet: ƒ AudioWorklet()AudioWorkletNode: ƒ AudioWorkletNode()AuthenticatorAssertionResponse: ƒ AuthenticatorAssertionResponse()AuthenticatorAttestationResponse: ƒ AuthenticatorAttestationResponse()AuthenticatorResponse: ƒ AuthenticatorResponse()BackgroundFetchManager: ƒ BackgroundFetchManager()BackgroundFetchRecord: ƒ BackgroundFetchRecord()BackgroundFetchRegistration: ƒ BackgroundFetchRegistration()BarProp: ƒ BarProp()BarcodeDetector: ƒ BarcodeDetector()BaseAudioContext: ƒ BaseAudioContext()BatteryManager: ƒ BatteryManager()BeforeInstallPromptEvent: ƒ BeforeInstallPromptEvent()BeforeUnloadEvent: ƒ BeforeUnloadEvent()BigInt: ƒ BigInt()BigInt64Array: ƒ BigInt64Array()BigUint64Array: ƒ BigUint64Array()BiquadFilterNode: ƒ BiquadFilterNode()Blob: ƒ Blob()BlobEvent: ƒ BlobEvent()Bluetooth: ƒ Bluetooth()BluetoothCharacteristicProperties: ƒ BluetoothCharacteristicProperties()BluetoothDevice: ƒ BluetoothDevice()BluetoothRemoteGATTCharacteristic: ƒ BluetoothRemoteGATTCharacteristic()BluetoothRemoteGATTDescriptor: ƒ BluetoothRemoteGATTDescriptor()BluetoothRemoteGATTServer: ƒ BluetoothRemoteGATTServer()BluetoothRemoteGATTService: ƒ BluetoothRemoteGATTService()BluetoothUUID: ƒ BluetoothUUID()Boolean: ƒ Boolean()BroadcastChannel: ƒ BroadcastChannel()ByteLengthQueuingStrategy: ƒ ByteLengthQueuingStrategy()CDATASection: ƒ CDATASection()CSS: ƒ CSS()CSSAnimation: ƒ CSSAnimation()CSSConditionRule: ƒ CSSConditionRule()CSSFontFaceRule: ƒ CSSFontFaceRule()CSSGroupingRule: ƒ CSSGroupingRule()CSSImageValue: ƒ CSSImageValue()CSSImportRule: ƒ CSSImportRule()CSSKeyframeRule: ƒ CSSKeyframeRule()CSSKeyframesRule: ƒ CSSKeyframesRule()CSSKeywordValue: ƒ CSSKeywordValue()CSSMathInvert: ƒ CSSMathInvert()CSSMathMax: ƒ CSSMathMax()CSSMathMin: ƒ CSSMathMin()CSSMathNegate: ƒ CSSMathNegate()CSSMathProduct: ƒ CSSMathProduct()CSSMathSum: ƒ CSSMathSum()CSSMathValue: ƒ CSSMathValue()CSSMatrixComponent: ƒ CSSMatrixComponent()CSSMediaRule: ƒ CSSMediaRule()CSSNamespaceRule: ƒ CSSNamespaceRule()CSSNumericArray: ƒ CSSNumericArray()CSSNumericValue: ƒ CSSNumericValue()CSSPageRule: ƒ CSSPageRule()CSSPerspective: ƒ CSSPerspective()CSSPositionValue: ƒ CSSPositionValue()CSSPropertyRule: ƒ CSSPropertyRule()CSSRotate: ƒ CSSRotate()CSSRule: ƒ CSSRule()CSSRuleList: ƒ CSSRuleList()CSSScale: ƒ CSSScale()CSSSkew: ƒ CSSSkew()CSSSkewX: ƒ CSSSkewX()CSSSkewY: ƒ CSSSkewY()CSSStyleDeclaration: ƒ CSSStyleDeclaration()CSSStyleRule: ƒ CSSStyleRule()CSSStyleSheet: ƒ CSSStyleSheet()CSSStyleValue: ƒ CSSStyleValue()CSSSupportsRule: ƒ CSSSupportsRule()CSSTransformComponent: ƒ CSSTransformComponent()CSSTransformValue: ƒ CSSTransformValue()CSSTransition: ƒ CSSTransition()CSSTranslate: ƒ CSSTranslate()CSSUnitValue: ƒ CSSUnitValue()CSSUnparsedValue: ƒ CSSUnparsedValue()CSSVariableReferenceValue: ƒ CSSVariableReferenceValue()Cache: ƒ Cache()CacheStorage: ƒ CacheStorage()CanvasCaptureMediaStreamTrack: ƒ CanvasCaptureMediaStreamTrack()CanvasGradient: ƒ CanvasGradient()CanvasPattern: ƒ CanvasPattern()CanvasRenderingContext2D: ƒ CanvasRenderingContext2D()ChannelMergerNode: ƒ ChannelMergerNode()ChannelSplitterNode: ƒ ChannelSplitterNode()CharacterData: ƒ CharacterData()Clipboard: ƒ Clipboard()ClipboardEvent: ƒ ClipboardEvent()ClipboardItem: ƒ ClipboardItem()CloseEvent: ƒ CloseEvent()Comment: ƒ Comment()CompositionEvent: ƒ CompositionEvent()CompressionStream: ƒ CompressionStream()ConstantSourceNode: ƒ ConstantSourceNode()ConvolverNode: ƒ ConvolverNode()CountQueuingStrategy: ƒ CountQueuingStrategy()Credential: ƒ Credential()CredentialsContainer: ƒ CredentialsContainer()Crypto: ƒ Crypto()CryptoKey: ƒ CryptoKey()CustomElementRegistry: ƒ CustomElementRegistry()CustomEvent: ƒ CustomEvent()DOMError: ƒ DOMError()DOMException: ƒ DOMException()DOMImplementation: ƒ DOMImplementation()DOMMatrix: ƒ DOMMatrix()DOMMatrixReadOnly: ƒ DOMMatrixReadOnly()DOMParser: ƒ DOMParser()DOMPoint: ƒ DOMPoint()DOMPointReadOnly: ƒ DOMPointReadOnly()DOMQuad: ƒ DOMQuad()DOMRect: ƒ DOMRect()DOMRectList: ƒ DOMRectList()DOMRectReadOnly: ƒ DOMRectReadOnly()DOMStringList: ƒ DOMStringList()DOMStringMap: ƒ DOMStringMap()DOMTokenList: ƒ DOMTokenList()DataTransfer: ƒ DataTransfer()DataTransferItem: ƒ DataTransferItem()DataTransferItemList: ƒ DataTransferItemList()DataView: ƒ DataView()Date: ƒ Date()DecompressionStream: ƒ DecompressionStream()DelayNode: ƒ DelayNode()DeviceMotionEvent: ƒ DeviceMotionEvent()DeviceMotionEventAcceleration: ƒ DeviceMotionEventAcceleration()DeviceMotionEventRotationRate: ƒ DeviceMotionEventRotationRate()DeviceOrientationEvent: ƒ DeviceOrientationEvent()Document: ƒ Document()DocumentFragment: ƒ DocumentFragment()DocumentTimeline: ƒ DocumentTimeline()DocumentType: ƒ DocumentType()DragEvent: ƒ DragEvent()DynamicsCompressorNode: ƒ DynamicsCompressorNode()Element: ƒ Element()ElementInternals: ƒ ElementInternals()Error: ƒ Error()ErrorEvent: ƒ ErrorEvent()EvalError: ƒ EvalError()Event: ƒ Event()EventCounts: ƒ EventCounts()EventSource: ƒ EventSource()EventTarget: ƒ EventTarget()External: ƒ External()FeaturePolicy: ƒ FeaturePolicy()FederatedCredential: ƒ FederatedCredential()File: ƒ File()FileList: ƒ FileList()FileReader: ƒ FileReader()FileSystemDirectoryHandle: ƒ FileSystemDirectoryHandle()FileSystemFileHandle: ƒ FileSystemFileHandle()FileSystemHandle: ƒ FileSystemHandle()FileSystemWritableFileStream: ƒ FileSystemWritableFileStream()FinalizationRegistry: ƒ FinalizationRegistry()Float32Array: ƒ Float32Array()Float64Array: ƒ Float64Array()FocusEvent: ƒ FocusEvent()FontFace: ƒ FontFace()FontFaceSetLoadEvent: ƒ FontFaceSetLoadEvent()FormData: ƒ FormData()FormDataEvent: ƒ FormDataEvent()FragmentDirective: ƒ FragmentDirective()Function: ƒ Function()GainNode: ƒ GainNode()Gamepad: ƒ Gamepad()GamepadButton: ƒ GamepadButton()GamepadEvent: ƒ GamepadEvent()GamepadHapticActuator: ƒ GamepadHapticActuator()Geolocation: ƒ Geolocation()GeolocationCoordinates: ƒ GeolocationCoordinates()GeolocationPosition: ƒ GeolocationPosition()GeolocationPositionError: ƒ GeolocationPositionError()Gyroscope: ƒ Gyroscope()HTMLAllCollection: ƒ HTMLAllCollection()HTMLAnchorElement: ƒ HTMLAnchorElement()HTMLAreaElement: ƒ HTMLAreaElement()HTMLAudioElement: ƒ HTMLAudioElement()HTMLBRElement: ƒ HTMLBRElement()HTMLBaseElement: ƒ HTMLBaseElement()HTMLBodyElement: ƒ HTMLBodyElement()HTMLButtonElement: ƒ HTMLButtonElement()HTMLCanvasElement: ƒ HTMLCanvasElement()HTMLCollection: ƒ HTMLCollection()HTMLContentElement: ƒ HTMLContentElement()HTMLDListElement: ƒ HTMLDListElement()HTMLDataElement: ƒ HTMLDataElement()HTMLDataListElement: ƒ HTMLDataListElement()HTMLDetailsElement: ƒ HTMLDetailsElement()HTMLDialogElement: ƒ HTMLDialogElement()HTMLDirectoryElement: ƒ HTMLDirectoryElement()HTMLDivElement: ƒ HTMLDivElement()HTMLDocument: ƒ HTMLDocument()HTMLElement: ƒ HTMLElement()HTMLEmbedElement: ƒ HTMLEmbedElement()HTMLFieldSetElement: ƒ HTMLFieldSetElement()HTMLFontElement: ƒ HTMLFontElement()HTMLFormControlsCollection: ƒ HTMLFormControlsCollection()HTMLFormElement: ƒ HTMLFormElement()HTMLFrameElement: ƒ HTMLFrameElement()HTMLFrameSetElement: ƒ HTMLFrameSetElement()HTMLHRElement: ƒ HTMLHRElement()HTMLHeadElement: ƒ HTMLHeadElement()HTMLHeadingElement: ƒ HTMLHeadingElement()HTMLHtmlElement: ƒ HTMLHtmlElement()HTMLIFrameElement: ƒ HTMLIFrameElement()HTMLImageElement: ƒ HTMLImageElement()HTMLInputElement: ƒ HTMLInputElement()HTMLLIElement: ƒ HTMLLIElement()HTMLLabelElement: ƒ HTMLLabelElement()HTMLLegendElement: ƒ HTMLLegendElement()HTMLLinkElement: ƒ HTMLLinkElement()HTMLMapElement: ƒ HTMLMapElement()HTMLMarqueeElement: ƒ HTMLMarqueeElement()HTMLMediaElement: ƒ HTMLMediaElement()HTMLMenuElement: ƒ HTMLMenuElement()HTMLMetaElement: ƒ HTMLMetaElement()HTMLMeterElement: ƒ HTMLMeterElement()HTMLModElement: ƒ HTMLModElement()HTMLOListElement: ƒ HTMLOListElement()HTMLObjectElement: ƒ HTMLObjectElement()HTMLOptGroupElement: ƒ HTMLOptGroupElement()HTMLOptionElement: ƒ HTMLOptionElement()HTMLOptionsCollection: ƒ HTMLOptionsCollection()HTMLOutputElement: ƒ HTMLOutputElement()HTMLParagraphElement: ƒ HTMLParagraphElement()HTMLParamElement: ƒ HTMLParamElement()HTMLPictureElement: ƒ HTMLPictureElement()HTMLPreElement: ƒ HTMLPreElement()HTMLProgressElement: ƒ HTMLProgressElement()HTMLQuoteElement: ƒ HTMLQuoteElement()HTMLScriptElement: ƒ HTMLScriptElement()HTMLSelectElement: ƒ HTMLSelectElement()HTMLShadowElement: ƒ HTMLShadowElement()HTMLSlotElement: ƒ HTMLSlotElement()HTMLSourceElement: ƒ HTMLSourceElement()HTMLSpanElement: ƒ HTMLSpanElement()HTMLStyleElement: ƒ HTMLStyleElement()HTMLTableCaptionElement: ƒ HTMLTableCaptionElement()HTMLTableCellElement: ƒ HTMLTableCellElement()HTMLTableColElement: ƒ HTMLTableColElement()HTMLTableElement: ƒ HTMLTableElement()HTMLTableRowElement: ƒ HTMLTableRowElement()HTMLTableSectionElement: ƒ HTMLTableSectionElement()HTMLTemplateElement: ƒ HTMLTemplateElement()HTMLTextAreaElement: ƒ HTMLTextAreaElement()HTMLTimeElement: ƒ HTMLTimeElement()HTMLTitleElement: ƒ HTMLTitleElement()HTMLTrackElement: ƒ HTMLTrackElement()HTMLUListElement: ƒ HTMLUListElement()HTMLUnknownElement: ƒ HTMLUnknownElement()HTMLVideoElement: ƒ HTMLVideoElement()HashChangeEvent: ƒ HashChangeEvent()Headers: ƒ Headers()History: ƒ History()IDBCursor: ƒ IDBCursor()IDBCursorWithValue: ƒ IDBCursorWithValue()IDBDatabase: ƒ IDBDatabase()IDBFactory: ƒ IDBFactory()IDBIndex: ƒ IDBIndex()IDBKeyRange: ƒ IDBKeyRange()IDBObjectStore: ƒ IDBObjectStore()IDBOpenDBRequest: ƒ IDBOpenDBRequest()IDBRequest: ƒ IDBRequest()IDBTransaction: ƒ IDBTransaction()IDBVersionChangeEvent: ƒ IDBVersionChangeEvent()IIRFilterNode: ƒ IIRFilterNode()IdleDeadline: ƒ IdleDeadline()Image: ƒ Image()ImageBitmap: ƒ ImageBitmap()ImageBitmapRenderingContext: ƒ ImageBitmapRenderingContext()ImageCapture: ƒ ImageCapture()ImageData: ƒ ImageData()InputDeviceCapabilities: ƒ InputDeviceCapabilities()InputDeviceInfo: ƒ InputDeviceInfo()InputEvent: ƒ InputEvent()Int8Array: ƒ Int8Array()Int16Array: ƒ Int16Array()Int32Array: ƒ Int32Array()IntersectionObserver: ƒ IntersectionObserver()IntersectionObserverEntry: ƒ IntersectionObserverEntry()Intl: Intl {getCanonicalLocales: ƒ, DateTimeFormat: ƒ, NumberFormat: ƒ, Collator: ƒ, v8BreakIterator: ƒ, …}JSON: JSON {Symbol(Symbol.toStringTag): "JSON", parse: ƒ, stringify: ƒ}Keyboard: ƒ Keyboard()KeyboardEvent: ƒ KeyboardEvent()KeyboardLayoutMap: ƒ KeyboardLayoutMap()KeyframeEffect: ƒ KeyframeEffect()LargestContentfulPaint: ƒ LargestContentfulPaint()LayoutShift: ƒ LayoutShift()LayoutShiftAttribution: ƒ LayoutShiftAttribution()LinearAccelerationSensor: ƒ LinearAccelerationSensor()Location: ƒ Location()Lock: ƒ Lock()LockManager: ƒ LockManager()MIDIAccess: ƒ MIDIAccess()MIDIConnectionEvent: ƒ MIDIConnectionEvent()MIDIInput: ƒ MIDIInput()MIDIInputMap: ƒ MIDIInputMap()MIDIMessageEvent: ƒ MIDIMessageEvent()MIDIOutput: ƒ MIDIOutput()MIDIOutputMap: ƒ MIDIOutputMap()MIDIPort: ƒ MIDIPort()Map: ƒ Map()Math: Math {abs: ƒ, acos: ƒ, acosh: ƒ, asin: ƒ, asinh: ƒ, …}MediaCapabilities: ƒ MediaCapabilities()MediaDeviceInfo: ƒ MediaDeviceInfo()MediaDevices: ƒ MediaDevices()MediaElementAudioSourceNode: ƒ MediaElementAudioSourceNode()MediaEncryptedEvent: ƒ MediaEncryptedEvent()MediaError: ƒ MediaError()MediaKeyMessageEvent: ƒ MediaKeyMessageEvent()MediaKeySession: ƒ MediaKeySession()MediaKeyStatusMap: ƒ MediaKeyStatusMap()MediaKeySystemAccess: ƒ MediaKeySystemAccess()MediaKeys: ƒ MediaKeys()MediaList: ƒ MediaList()MediaMetadata: ƒ MediaMetadata()MediaQueryList: ƒ MediaQueryList()MediaQueryListEvent: ƒ MediaQueryListEvent()MediaRecorder: ƒ MediaRecorder()MediaSession: ƒ MediaSession()MediaSource: ƒ MediaSource()MediaStream: ƒ MediaStream()MediaStreamAudioDestinationNode: ƒ MediaStreamAudioDestinationNode()MediaStreamAudioSourceNode: ƒ MediaStreamAudioSourceNode()MediaStreamEvent: ƒ MediaStreamEvent()MediaStreamTrack: ƒ MediaStreamTrack()MediaStreamTrackEvent: ƒ MediaStreamTrackEvent()MessageChannel: ƒ MessageChannel()MessageEvent: ƒ MessageEvent()MessagePort: ƒ MessagePort()MimeType: ƒ MimeType()MimeTypeArray: ƒ MimeTypeArray()MouseEvent: ƒ MouseEvent()MutationEvent: ƒ MutationEvent()MutationObserver: ƒ MutationObserver()MutationRecord: ƒ MutationRecord()NaN: NaNNamedNodeMap: ƒ NamedNodeMap()NavigationPreloadManager: ƒ NavigationPreloadManager()Navigator: ƒ Navigator()NetworkInformation: ƒ NetworkInformation()Node: ƒ Node()NodeFilter: ƒ NodeFilter()NodeIterator: ƒ NodeIterator()NodeList: ƒ NodeList()Notification: ƒ Notification()Number: ƒ Number()Object: ƒ Object()OfflineAudioCompletionEvent: ƒ OfflineAudioCompletionEvent()OfflineAudioContext: ƒ OfflineAudioContext()OffscreenCanvas: ƒ OffscreenCanvas()OffscreenCanvasRenderingContext2D: ƒ OffscreenCanvasRenderingContext2D()Option: ƒ Option()OrientationSensor: ƒ OrientationSensor()OscillatorNode: ƒ OscillatorNode()OverconstrainedError: ƒ OverconstrainedError()PageTransitionEvent: ƒ PageTransitionEvent()PannerNode: ƒ PannerNode()PasswordCredential: ƒ PasswordCredential()Path2D: ƒ Path2D()PaymentAddress: ƒ PaymentAddress()PaymentInstruments: ƒ PaymentInstruments()PaymentManager: ƒ PaymentManager()PaymentMethodChangeEvent: ƒ PaymentMethodChangeEvent()PaymentRequest: ƒ PaymentRequest()PaymentRequestUpdateEvent: ƒ PaymentRequestUpdateEvent()PaymentResponse: ƒ PaymentResponse()Performance: ƒ Performance()PerformanceElementTiming: ƒ PerformanceElementTiming()PerformanceEntry: ƒ PerformanceEntry()PerformanceEventTiming: ƒ PerformanceEventTiming()PerformanceLongTaskTiming: ƒ PerformanceLongTaskTiming()PerformanceMark: ƒ PerformanceMark()PerformanceMeasure: ƒ PerformanceMeasure()PerformanceNavigation: ƒ PerformanceNavigation()PerformanceNavigationTiming: ƒ PerformanceNavigationTiming()PerformanceObserver: ƒ PerformanceObserver()PerformanceObserverEntryList: ƒ PerformanceObserverEntryList()PerformancePaintTiming: ƒ PerformancePaintTiming()PerformanceResourceTiming: ƒ PerformanceResourceTiming()PerformanceServerTiming: ƒ PerformanceServerTiming()PerformanceTiming: ƒ PerformanceTiming()PeriodicSyncManager: ƒ PeriodicSyncManager()PeriodicWave: ƒ PeriodicWave()PermissionStatus: ƒ PermissionStatus()Permissions: ƒ Permissions()PictureInPictureEvent: ƒ PictureInPictureEvent()PictureInPictureWindow: ƒ PictureInPictureWindow()Plugin: ƒ Plugin()PluginArray: ƒ PluginArray()PointerEvent: ƒ PointerEvent()PopStateEvent: ƒ PopStateEvent()Presentation: ƒ Presentation()PresentationAvailability: ƒ PresentationAvailability()PresentationConnection: ƒ PresentationConnection()PresentationConnectionAvailableEvent: ƒ PresentationConnectionAvailableEvent()PresentationConnectionCloseEvent: ƒ PresentationConnectionCloseEvent()PresentationConnectionList: ƒ PresentationConnectionList()PresentationReceiver: ƒ PresentationReceiver()PresentationRequest: ƒ PresentationRequest()ProcessingInstruction: ƒ ProcessingInstruction()ProgressEvent: ƒ ProgressEvent()Promise: ƒ Promise()PromiseRejectionEvent: ƒ PromiseRejectionEvent()Proxy: ƒ Proxy()PublicKeyCredential: ƒ PublicKeyCredential()PushManager: ƒ PushManager()PushSubscription: ƒ PushSubscription()PushSubscriptionOptions: ƒ PushSubscriptionOptions()RTCCertificate: ƒ RTCCertificate()RTCDTMFSender: ƒ RTCDTMFSender()RTCDTMFToneChangeEvent: ƒ RTCDTMFToneChangeEvent()RTCDataChannel: ƒ RTCDataChannel()RTCDataChannelEvent: ƒ RTCDataChannelEvent()RTCDtlsTransport: ƒ RTCDtlsTransport()RTCEncodedAudioFrame: ƒ RTCEncodedAudioFrame()RTCEncodedVideoFrame: ƒ RTCEncodedVideoFrame()RTCError: ƒ RTCError()RTCErrorEvent: ƒ RTCErrorEvent()RTCIceCandidate: ƒ RTCIceCandidate()RTCIceTransport: ƒ RTCIceTransport()RTCPeerConnection: ƒ RTCPeerConnection()RTCPeerConnectionIceErrorEvent: ƒ RTCPeerConnectionIceErrorEvent()RTCPeerConnectionIceEvent: ƒ RTCPeerConnectionIceEvent()RTCRtpReceiver: ƒ RTCRtpReceiver()RTCRtpSender: ƒ RTCRtpSender()RTCRtpTransceiver: ƒ RTCRtpTransceiver()RTCSctpTransport: ƒ RTCSctpTransport()RTCSessionDescription: ƒ RTCSessionDescription()RTCStatsReport: ƒ RTCStatsReport()RTCTrackEvent: ƒ RTCTrackEvent()RadioNodeList: ƒ RadioNodeList()Range: ƒ Range()RangeError: ƒ RangeError()ReadableStream: ƒ ReadableStream()ReadableStreamDefaultReader: ƒ ReadableStreamDefaultReader()ReferenceError: ƒ ReferenceError()Reflect: Reflect {defineProperty: ƒ, deleteProperty: ƒ, apply: ƒ, construct: ƒ, get: ƒ, …}RegExp: ƒ RegExp()RelativeOrientationSensor: ƒ RelativeOrientationSensor()RemotePlayback: ƒ RemotePlayback()ReportingObserver: ƒ ReportingObserver()Request: ƒ Request()ResizeObserver: ƒ ResizeObserver()ResizeObserverEntry: ƒ ResizeObserverEntry()ResizeObserverSize: ƒ ResizeObserverSize()Response: ƒ Response()SVGAElement: ƒ SVGAElement()SVGAngle: ƒ SVGAngle()SVGAnimateElement: ƒ SVGAnimateElement()SVGAnimateMotionElement: ƒ SVGAnimateMotionElement()SVGAnimateTransformElement: ƒ SVGAnimateTransformElement()SVGAnimatedAngle: ƒ SVGAnimatedAngle()SVGAnimatedBoolean: ƒ SVGAnimatedBoolean()SVGAnimatedEnumeration: ƒ SVGAnimatedEnumeration()SVGAnimatedInteger: ƒ SVGAnimatedInteger()SVGAnimatedLength: ƒ SVGAnimatedLength()SVGAnimatedLengthList: ƒ SVGAnimatedLengthList()SVGAnimatedNumber: ƒ SVGAnimatedNumber()SVGAnimatedNumberList: ƒ SVGAnimatedNumberList()SVGAnimatedPreserveAspectRatio: ƒ SVGAnimatedPreserveAspectRatio()SVGAnimatedRect: ƒ SVGAnimatedRect()SVGAnimatedString: ƒ SVGAnimatedString()SVGAnimatedTransformList: ƒ SVGAnimatedTransformList()SVGAnimationElement: ƒ SVGAnimationElement()SVGCircleElement: ƒ SVGCircleElement()SVGClipPathElement: ƒ SVGClipPathElement()SVGComponentTransferFunctionElement: ƒ SVGComponentTransferFunctionElement()SVGDefsElement: ƒ SVGDefsElement()SVGDescElement: ƒ SVGDescElement()SVGElement: ƒ SVGElement()SVGEllipseElement: ƒ SVGEllipseElement()SVGFEBlendElement: ƒ SVGFEBlendElement()SVGFEColorMatrixElement: ƒ SVGFEColorMatrixElement()SVGFEComponentTransferElement: ƒ SVGFEComponentTransferElement()SVGFECompositeElement: ƒ SVGFECompositeElement()SVGFEConvolveMatrixElement: ƒ SVGFEConvolveMatrixElement()SVGFEDiffuseLightingElement: ƒ SVGFEDiffuseLightingElement()SVGFEDisplacementMapElement: ƒ SVGFEDisplacementMapElement()SVGFEDistantLightElement: ƒ SVGFEDistantLightElement()SVGFEDropShadowElement: ƒ SVGFEDropShadowElement()SVGFEFloodElement: ƒ SVGFEFloodElement()SVGFEFuncAElement: ƒ SVGFEFuncAElement()SVGFEFuncBElement: ƒ SVGFEFuncBElement()SVGFEFuncGElement: ƒ SVGFEFuncGElement()SVGFEFuncRElement: ƒ SVGFEFuncRElement()SVGFEGaussianBlurElement: ƒ SVGFEGaussianBlurElement()SVGFEImageElement: ƒ SVGFEImageElement()SVGFEMergeElement: ƒ SVGFEMergeElement()SVGFEMergeNodeElement: ƒ SVGFEMergeNodeElement()SVGFEMorphologyElement: ƒ SVGFEMorphologyElement()SVGFEOffsetElement: ƒ SVGFEOffsetElement()SVGFEPointLightElement: ƒ SVGFEPointLightElement()SVGFESpecularLightingElement: ƒ SVGFESpecularLightingElement()SVGFESpotLightElement: ƒ SVGFESpotLightElement()SVGFETileElement: ƒ SVGFETileElement()SVGFETurbulenceElement: ƒ SVGFETurbulenceElement()SVGFilterElement: ƒ SVGFilterElement()SVGForeignObjectElement: ƒ SVGForeignObjectElement()SVGGElement: ƒ SVGGElement()SVGGeometryElement: ƒ SVGGeometryElement()SVGGradientElement: ƒ SVGGradientElement()SVGGraphicsElement: ƒ SVGGraphicsElement()SVGImageElement: ƒ SVGImageElement()SVGLength: ƒ SVGLength()SVGLengthList: ƒ SVGLengthList()SVGLineElement: ƒ SVGLineElement()SVGLinearGradientElement: ƒ SVGLinearGradientElement()SVGMPathElement: ƒ SVGMPathElement()SVGMarkerElement: ƒ SVGMarkerElement()SVGMaskElement: ƒ SVGMaskElement()SVGMatrix: ƒ SVGMatrix()SVGMetadataElement: ƒ SVGMetadataElement()SVGNumber: ƒ SVGNumber()SVGNumberList: ƒ SVGNumberList()SVGPathElement: ƒ SVGPathElement()SVGPatternElement: ƒ SVGPatternElement()SVGPoint: ƒ SVGPoint()SVGPointList: ƒ SVGPointList()SVGPolygonElement: ƒ SVGPolygonElement()SVGPolylineElement: ƒ SVGPolylineElement()SVGPreserveAspectRatio: ƒ SVGPreserveAspectRatio()SVGRadialGradientElement: ƒ SVGRadialGradientElement()SVGRect: ƒ SVGRect()SVGRectElement: ƒ SVGRectElement()SVGSVGElement: ƒ SVGSVGElement()SVGScriptElement: ƒ SVGScriptElement()SVGSetElement: ƒ SVGSetElement()SVGStopElement: ƒ SVGStopElement()SVGStringList: ƒ SVGStringList()SVGStyleElement: ƒ SVGStyleElement()SVGSwitchElement: ƒ SVGSwitchElement()SVGSymbolElement: ƒ SVGSymbolElement()SVGTSpanElement: ƒ SVGTSpanElement()SVGTextContentElement: ƒ SVGTextContentElement()SVGTextElement: ƒ SVGTextElement()SVGTextPathElement: ƒ SVGTextPathElement()SVGTextPositioningElement: ƒ SVGTextPositioningElement()SVGTitleElement: ƒ SVGTitleElement()SVGTransform: ƒ SVGTransform()SVGTransformList: ƒ SVGTransformList()SVGUnitTypes: ƒ SVGUnitTypes()SVGUseElement: ƒ SVGUseElement()SVGViewElement: ƒ SVGViewElement()Screen: ƒ Screen()ScreenOrientation: ƒ ScreenOrientation()ScriptProcessorNode: ƒ ScriptProcessorNode()SecurityPolicyViolationEvent: ƒ SecurityPolicyViolationEvent()Selection: ƒ Selection()Sensor: ƒ Sensor()SensorErrorEvent: ƒ SensorErrorEvent()ServiceWorker: ƒ ServiceWorker()ServiceWorkerContainer: ƒ ServiceWorkerContainer()ServiceWorkerRegistration: ƒ ServiceWorkerRegistration()Set: ƒ Set()ShadowRoot: ƒ ShadowRoot()SharedArrayBuffer: ƒ SharedArrayBuffer()SharedWorker: ƒ SharedWorker()SourceBuffer: ƒ SourceBuffer()SourceBufferList: ƒ SourceBufferList()SpeechSynthesisErrorEvent: ƒ SpeechSynthesisErrorEvent()SpeechSynthesisEvent: ƒ SpeechSynthesisEvent()SpeechSynthesisUtterance: ƒ SpeechSynthesisUtterance()StaticRange: ƒ StaticRange()StereoPannerNode: ƒ StereoPannerNode()Storage: ƒ Storage()StorageEvent: ƒ StorageEvent()StorageManager: ƒ StorageManager()String: ƒ String()StylePropertyMap: ƒ StylePropertyMap()StylePropertyMapReadOnly: ƒ StylePropertyMapReadOnly()StyleSheet: ƒ StyleSheet()StyleSheetList: ƒ StyleSheetList()SubmitEvent: ƒ SubmitEvent()SubtleCrypto: ƒ SubtleCrypto()Symbol: ƒ Symbol()SyncManager: ƒ SyncManager()SyntaxError: ƒ SyntaxError()TaskAttributionTiming: ƒ TaskAttributionTiming()Text: ƒ Text()TextDecoder: ƒ TextDecoder()TextDecoderStream: ƒ TextDecoderStream()TextEncoder: ƒ TextEncoder()TextEncoderStream: ƒ TextEncoderStream()TextEvent: ƒ TextEvent()TextMetrics: ƒ TextMetrics()TextTrack: ƒ TextTrack()TextTrackCue: ƒ TextTrackCue()TextTrackCueList: ƒ TextTrackCueList()TextTrackList: ƒ TextTrackList()TimeRanges: ƒ TimeRanges()Touch: ƒ Touch()TouchEvent: ƒ TouchEvent()TouchList: ƒ TouchList()TrackEvent: ƒ TrackEvent()TransformStream: ƒ TransformStream()TransitionEvent: ƒ TransitionEvent()TreeWalker: ƒ TreeWalker()TrustedHTML: ƒ TrustedHTML()TrustedScript: ƒ TrustedScript()TrustedScriptURL: ƒ TrustedScriptURL()TrustedTypePolicy: ƒ TrustedTypePolicy()TrustedTypePolicyFactory: ƒ TrustedTypePolicyFactory()TypeError: ƒ TypeError()UIEvent: ƒ UIEvent()URIError: ƒ URIError()URL: ƒ URL()URLSearchParams: ƒ URLSearchParams()USB: ƒ USB()USBAlternateInterface: ƒ USBAlternateInterface()USBConfiguration: ƒ USBConfiguration()USBConnectionEvent: ƒ USBConnectionEvent()USBDevice: ƒ USBDevice()USBEndpoint: ƒ USBEndpoint()USBInTransferResult: ƒ USBInTransferResult()USBInterface: ƒ USBInterface()USBIsochronousInTransferPacket: ƒ USBIsochronousInTransferPacket()USBIsochronousInTransferResult: ƒ USBIsochronousInTransferResult()USBIsochronousOutTransferPacket: ƒ USBIsochronousOutTransferPacket()USBIsochronousOutTransferResult: ƒ USBIsochronousOutTransferResult()USBOutTransferResult: ƒ USBOutTransferResult()Uint8Array: ƒ Uint8Array()Uint8ClampedArray: ƒ Uint8ClampedArray()Uint16Array: ƒ Uint16Array()Uint32Array: ƒ Uint32Array()UserActivation: ƒ UserActivation()VTTCue: ƒ VTTCue()ValidityState: ƒ ValidityState()VideoPlaybackQuality: ƒ VideoPlaybackQuality()VisualViewport: ƒ VisualViewport()WakeLock: ƒ WakeLock()WakeLockSentinel: ƒ WakeLockSentinel()WaveShaperNode: ƒ WaveShaperNode()WeakMap: ƒ WeakMap()WeakRef: ƒ WeakRef()WeakSet: ƒ WeakSet()WebAssembly: WebAssembly {compile: ƒ, validate: ƒ, instantiate: ƒ, compileStreaming: ƒ, instantiateStreaming: ƒ, …}WebGL2RenderingContext: ƒ WebGL2RenderingContext()WebGLActiveInfo: ƒ WebGLActiveInfo()WebGLBuffer: ƒ WebGLBuffer()WebGLContextEvent: ƒ WebGLContextEvent()WebGLFramebuffer: ƒ WebGLFramebuffer()WebGLProgram: ƒ WebGLProgram()WebGLQuery: ƒ WebGLQuery()WebGLRenderbuffer: ƒ WebGLRenderbuffer()WebGLRenderingContext: ƒ WebGLRenderingContext()WebGLSampler: ƒ WebGLSampler()WebGLShader: ƒ WebGLShader()WebGLShaderPrecisionFormat: ƒ WebGLShaderPrecisionFormat()WebGLSync: ƒ WebGLSync()WebGLTexture: ƒ WebGLTexture()WebGLTransformFeedback: ƒ WebGLTransformFeedback()WebGLUniformLocation: ƒ WebGLUniformLocation()WebGLVertexArrayObject: ƒ WebGLVertexArrayObject()WebKitCSSMatrix: ƒ DOMMatrix()WebKitMutationObserver: ƒ MutationObserver()WebSocket: ƒ WebSocket()WheelEvent: ƒ WheelEvent()Window: ƒ Window()Worker: ƒ Worker()Worklet: ƒ Worklet()WritableStream: ƒ WritableStream()WritableStreamDefaultWriter: ƒ WritableStreamDefaultWriter()XMLDocument: ƒ XMLDocument()XMLHttpRequest: ƒ XMLHttpRequest()XMLHttpRequestEventTarget: ƒ XMLHttpRequestEventTarget()XMLHttpRequestUpload: ƒ XMLHttpRequestUpload()XMLSerializer: ƒ XMLSerializer()XPathEvaluator: ƒ XPathEvaluator()XPathExpression: ƒ XPathExpression()XPathResult: ƒ XPathResult()XRAnchor: ƒ XRAnchor()XRAnchorSet: ƒ XRAnchorSet()XRBoundedReferenceSpace: ƒ XRBoundedReferenceSpace()XRDOMOverlayState: ƒ XRDOMOverlayState()XRFrame: ƒ XRFrame()XRHitTestResult: ƒ XRHitTestResult()XRHitTestSource: ƒ XRHitTestSource()XRInputSource: ƒ XRInputSource()XRInputSourceArray: ƒ XRInputSourceArray()XRInputSourceEvent: ƒ XRInputSourceEvent()XRInputSourcesChangeEvent: ƒ XRInputSourcesChangeEvent()XRLayer: ƒ XRLayer()XRPose: ƒ XRPose()XRRay: ƒ XRRay()XRReferenceSpace: ƒ XRReferenceSpace()XRReferenceSpaceEvent: ƒ XRReferenceSpaceEvent()XRRenderState: ƒ XRRenderState()XRRigidTransform: ƒ XRRigidTransform()XRSession: ƒ XRSession()XRSessionEvent: ƒ XRSessionEvent()XRSpace: ƒ XRSpace()XRSystem: ƒ XRSystem()XRTransientInputHitTestResult: ƒ XRTransientInputHitTestResult()XRTransientInputHitTestSource: ƒ XRTransientInputHitTestSource()XRView: ƒ XRView()XRViewerPose: ƒ XRViewerPose()XRViewport: ƒ XRViewport()XRWebGLLayer: ƒ XRWebGLLayer()XSLTProcessor: ƒ XSLTProcessor()console: console {debug: ƒ, error: ƒ, info: ƒ, log: ƒ, warn: ƒ, …}decodeURI: ƒ decodeURI()decodeURIComponent: ƒ decodeURIComponent()encodeURI: ƒ encodeURI()encodeURIComponent: ƒ encodeURIComponent()escape: ƒ escape()eval: ƒ eval()event: undefinedglobalThis: Window {0: Window, 1: Window, window: Window, self: Window, document: document, name: "", location: Location, …}isFinite: ƒ isFinite()isNaN: ƒ isNaN()offscreenBuffering: trueparseFloat: ƒ parseFloat()parseInt: ƒ parseInt()undefined: undefinedunescape: ƒ unescape()webkitMediaStream: ƒ MediaStream()webkitRTCPeerConnection: ƒ RTCPeerConnection()webkitSpeechGrammar: ƒ SpeechGrammar()webkitSpeechGrammarList: ƒ SpeechGrammarList()webkitSpeechRecognition: ƒ SpeechRecognition()webkitSpeechRecognitionError: ƒ SpeechRecognitionErrorEvent()webkitSpeechRecognitionEvent: ƒ SpeechRecognitionEvent()webkitURL: ƒ URL()__proto__: Window
+this === window
+true
+
+EXAMPLE 3:
+
+//3. this in a function represent the object that own the functiom
+undefined
+function myFunction(){
+
+console.log(this);
+}
+myFunction()
+VM1847:3 Window {0: Window, 1: Window, window: Window, self: Window, document: document, name: "", location: Location, …}
+undefined
+
+
+EXAMPLE 3:
+//in an event, this refers to the element that received the event
+
+function abc(e){
+    console.log(e)
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script type="text/javascript" src="script.js" defer></script>
+
+</head>
+<body>
+
+  <button onclick="abc(this)">Click</button>
+
+</body>
+</html>
+
+
+EXAMPLE 4:
+
+//Explicit Function
+undefined
+var person = {
+firstName: "Kofi",
+lastName:  "Ackuayi",
+id      :    1,
+getFullName: function(){//this is a method
+console.log(this)
+return this.firstName + " " + this.lastName;
+
+}
+
+};
+
+undefined
+var person1 = {
+  firstName: "SalesForce",
+   lastName: "dev",
+}
+undefined
+person.getFullName.call(person1)
+VM1925:6 {firstName: "SalesForce", lastName: "dev"}
+"SalesForce dev"
+
+
+var person = {
+firstName: "Kofi",
+lastName:  "Ackuayi",
+id      :    1,
+getFullName: function(a, b){//this is a method
+console.log(this)
+return this.firstName + " " + this.lastName + " " + a + ' ' + b;
+
+}
+
+};
+
+undefined
+
+var person1 = {
+  firstName: "SalesForce",
+   lastName: "dev",
+}
+
+undefined
+person.getFullName.call(person1, "A", "B");
+VM2141:6 {firstName: "SalesForce", lastName: "dev"}
+"SalesForce dev A B"
+person.getFullName.apply(person1, ["A", "B"]);
+VM2141:6 {firstName: "SalesForce", lastName: "dev"}
+"SalesForce dev A B"
+================================END OF 'this' KEYWORD'============================================================================
+
+================================BEGIN Functions in JS============================================================================
+1. FUNCTION DECLARATION
+2. FUNCTION EXPRESSION
+3. FUNCTION() CONSTRUCTOR
+4. Immediately-invoked function expression
+5. arrow function
+
+
+EXAMPLE 1:
+
+/Function declaration
+undefined
+function func(a,b){
+return a * b;
+}
+
+func(10, 20);
+200
+
+EXAMPLE 2:
+
+//fUNCTION Expression
+undefined
+var x = function (a, b){
+  return a % b;
+}
+
+x(4,8);
+4
+
+---------------------
+EXAMPLE 2:
+
+//IIFEs Immediate Invoked Function Expressions
+undefined
+function abc(a,c){
+  return a*c;
+}
+
+undefined
+abc(2,3)
+6
+-------------------
+EXAMPLE 3:
+
+(function abc(a,c){
+  return a*c;
+})(3, 6)
+
+18
+
+---------------
+EXAMPLE 4: Arrow function
+
+function abc(){
+
+return 42
+
+}
+undefined
+var abc = () =>42
+undefined
+abc()
+42
+function abc(x){
+return x;
+}
+undefined
+var abc = (x) => x
+undefined
+abc(4)
+4
+-----------------------
+Example 5:
+
+function gh(x, y){
+return x + y;
+}
+undefined
+const gh1 = (x,y) => x+y;
+undefined
+gh(4,4)
+8
+------------------------------
+Example 6:
+
+function ghana(x, y){
+let z = 10;
+return x + y + z;
+}
+undefined
+ghana2 = (x,y)=>{
+
+let z = 10;
+return x + y + 10;
+
+}
+(x,y)=>{
+
+let z = 10;
+return x + y + 10;
+
+}
+ghana(5,5)
+20
+--------------------------------------------------------------
+Example 7:
+
+function abc(){
+ return {"name": "felix"}
+}
+undefined
+var abc2 = ()=>({"name": "felix"})
+undefined
+abc2()
+{name: "felix"}name: "felix"__proto__: Object
+-------------------------------------------------------------------
+
+EXAMPLE 8:
+
+var obj = {
+  id: 43,
+  counter: function counter(){
+  console.log(this)
+  var that = this
+  function abc(){
+     console.log(this)
+     console.log("my id is = ", that.id)
+  }
+abc();
+
+  }
+
+}
+obj.counter()
+VM4435:4 {id: 43, counter: ƒ}
+VM4435:7 Window {0: Window, 1: Window, window: Window, self: Window, document: document, name: "", location: Location, …}
+VM4435:8 my id is =  43
+
+EXAMPLE 8a (alternative solution)
+--------------------------------
+var obj = {
+  id: 43,
+  counter: function counter(){
+  console.log(this)
+  function abc(){
+     console.log(this)
+     console.log("my id is = ", this.id)
+  }
+abc.bind(this)();
+
+  }
+
+}
+obj.counter()
+VM4520:4 {id: 43, counter: ƒ}
+VM4520:6 {id: 43, counter: ƒ}
+VM4520:7 my id is =  43
+undefined
+
+EXAMPLE 8b (alternative solution using arrow function)
+--------------------------------------------------------
+
+var obj = {
+  id: 43,
+  counter: function counter(){
+  console.log(this)
+  var abc = () =>{
+     console.log(this)
+     console.log("my id is = ", this.id)
+  }
+abc();
+
+  }
+
+}
+obj.counter()
+VM4570:4 {id: 43, counter: ƒ}
+VM4570:6 {id: 43, counter: ƒ}
+VM4570:7 my id is =  43
+undefined
+
+EXAMPLE 9
+----------
+
+var obj = {
+  id: 43,
+  counter: function counter(){
+   console.log(this)
+    console.log(this.id)
+}
+}
+undefined
+
+obj.counter()
+VM4686:4 {id: 43, counter: ƒ}counter: ƒ counter()id: 43__proto__: Object
+VM4686:5 43
+
+undefined
+..................
+var obj = {
+  id: 43,
+  counter: () => {
+   console.log(this)
+    console.log(this.id)
+}
+}
+undefined
+obj.counter()
+VM4746:4 Window {0: Window, 1: Window, window: Window, self: Window, document: document, name: "", location: Location, …}
+VM4746:5 undefined
+undefined
+
+
+================================END Functions in JS============================================================================
+
+================================BEGINNING CLOSURES============================================================================
+Closure is created when an inner function has access to its outer function variables and arguments. The inner function has access to:-
+1. It own variables
+2. Outer function's variables and argument
+3. Global variables
+
+EXAMPLE
+---------
+//createD function called outer, within the outer I created a local variable called counter ,and created another function that is returned by the outer function .And the inner function implementing the counter and return the counter
+
+function outer(){
+ var counter = 0;
+ return function inner(){
+   counter +=1
+return counter
+
+ }
+
+}
+undefined
+var counter = outer()
+undefined
+counter()
+1
+counter()
+2
+counter()
+3
+
+
+================================END CLOSURES============================================================================
+
+================================OBJECT DESTRUCTING============================================================================
+Object DESTRUCTING IS A NEW AND A CLEANER WAY OF GETTING OR EXTRACTING values from an object or an array.
+
+EXAMPLE:
+----------
+var employe ={
+
+firstName: "Felix",
+lastName:  "Ackuayi",
+position:  "SOFTWARE Tester",
+yearHired: "2021"
+
+};
+undefined
+var{firstName, lastName, position} = employe
+undefined
+
+firstName
+"Felix"
+
+lastName
+"Ackuayi"
+
+var{firstName, lastName, position, z='dummy'} = employe
+undefined
+z
+"dummy"
+
+EXAMPLE 2:
+----------
+//aRRAY DESTRUCTING
+undefined
+var arr = ['A','B','C']
+undefined
+var [first, second, third, fourth="D"] =arr
+undefined
+
+first
+"A"
+
+second
+"B"
+third
+"C"
+fourth
+"D"
+
+================================OBJECT DESTRUCTING============================================================================
+
+
+================================OBJECT FREEZING============================================================================
+The Object.freeze() method freezes an object
+a. A frozen object can no longer be changed
+b. freezing an object prevents new properties from being added to it
+c. existiting properties from being removed.
+
+EXAMPLE:
+
+const human ={
+ name: "Atsu"
+}
+undefined
+human.name ="kofi"
+"kofi"
+human
+{name: "kofi"}
+Object.freeze(human)
+{name: "kofi"}
+human.name="Pat"
+"Pat"
+human
+{name: "kofi"}name: "kofi"__proto__: Object
+delete human.name;
+false
+
+================================END OBJECT FREEZING============================================================================
+
+================================DATE OBJECT============================================================================
+Date Object is used to work with dates and times
+
+JS will use the browser's time zone and display a date as a full text string
+
+Syntax - new Date()
+
+There are four ways to create a new date object:
+
+1. newDate()
+2. new Date(year, month, day, hours, minutes, seconds, milliseconds)
+3. new Date(milliseconds)
+4. new Date(date string)
+
+NOTE: JS count months from 0 to 11. January ia 0. December is 11
+
+JS stores dates as number of milliseconds since January 01, 1970
+00:00:00 UTC (Universal Time Coordinated)
+
+EXAMPLE:
+..........
+new Date()
+Sun Nov 15 2020 15:57:51 GMT+0000 (Greenwich Mean Time)
+//2. new Date(year, month, day, hours, minutes, seconds, milliseconds)
+
+undefined
+new Date(2020, 11, 24, 10, 33, 30,0)
+Thu Dec 24 2020 10:33:30 GMT+0000 (Greenwich Mean Time)
+//new Date(milliseconds)
+undefined
+new Date(86600000)
+Fri Jan 02 1970 00:03:20 GMT+0000 (Greenwich Mean Time)
+//new Date(date string)
+undefined
+var d = new Date("December 24, 2021 11:20:00);
+VM469:1 Uncaught SyntaxError: Invalid or unexpected token
+var d = new Date("December 24, 2021 11:20:00");
+undefined
+var d = new Date(1950, 12, 24)
+undefined
+d
+Wed Jan 24 1951 00:00:00 GMT-0100 (Greenwich Mean Time)
+var d = new Date(1950, 11, 24)
+undefined
+d
+Sun Dec 24 1950 00:00:00 GMT-0100 (Greenwich Mean Time)
+d.getFullYear
+ƒ getFullYear() { [native code] }
+d.getFullYear()
+1950
+d.getYear()
+50
+d.getMonth()
+11
+d.getDate()
+24
+d.getDay()
+0
+d.setYear("2020")
+1608768000000
+d
+Thu Dec 24 2020 00:00:00 GMT+0000 (Greenwich Mean Time)
+
+================================END DATE OBJECT============================================================================
+
+================================SPREAD VS REST OPERATOR============================================================================
+
+The spread operator allows us to spread the value of an array (or any iterable) into single arguments/elements
+- Create New Copy of Array/Object
+- Concatenation  of values/properties
+- Pass elements of an array to a function as separate arguments
+- Convert string to an array
+
+The Rest operator allows us to collects all remaining elements into an array
+- With rest parameters we can gather any num of arguments into an array
+- Rest parameters have to be at the last arguments
+
+EXAMPLE 1.:
+------------
+//1. Create a new Copy
+undefined
+var x = [1,2,3,4,5]
+undefined
+var y =[...x]
+undefined
+y
+(5) [1, 2, 3, 4, 5]
+x.push(6)
+6
+x
+(6) [1, 2, 3, 4, 5, 6]
+y
+(5) [1, 2, 3, 4, 5]
+
+EXAMPLE 2:
+------------
+//2.Concatenation
+undefined
+var x = [1,2,3,4,5]
+undefined
+var y = [...x, "6"]
+undefined
+y
+(6) [1, 2, 3, 4, 5, "6"]
+
+EXAMPLE 3:
+-------------
+//3,Pass elements of an array to a function as separate arguments
+undefined
+function add(a,b,c){
+ return a + b+ c;
+
+}
+undefined
+var args = [1,2,3,4,5]
+undefined
+add(...args)
+6
+
+EXAMPLE 4:
+--------------
+
+//4. CONVERT STRING TO ARRAY
+undefined
+[..."fELIX"]
+(5) ["f", "E", "L", "I", "X"]
+
+EXAMPLE 5: REST:
+----------------
+function add(...args){
+ console.log(args)
+
+}
+undefined
+add(1)
+VM1756:2 [1]
+undefined
+
+add(1,2)
+VM1756:2 (2) [1, 2]
+undefined
+
+add(1,2,3)
+VM1756:2 (3) [1, 2, 3]
+undefined
+
+add(1,2,3,4,5,6,7)
+VM1756:2 (7) [1, 2, 3, 4, 5, 6, 7]
+undefined
+
+
+EXAMPLE 5B: REST
+---------------
+function xyz(x,y, ...z){
+ console.log(x, ' ', y);
+console.log(z)
+
+}
+undefined
+xyz("hey","hello", "wassup", "goodmorning", "hi", "howdy")
+VM1960:2 hey   hello
+
+VM1960:3 (4) ["wassup", "goodmorning", "hi", "howdy"]
+undefined
+================================END SPREAD VS REST OPERATOR============================================================================
+
+================================OBJECT PROTOTYPE AND PROTOTYPE CHAIN ============================================================================
+The prototype is an object that is associated with every functions and objects by default
+
+var o = Object.create(null)
+
+var o = [id:42, name:"felix"] => Object prototype
+
+var a = ["atsu"] => Array, prototype and Object.prototype
+
+function.prototype => Entry.prototype and Object.prototype
+
+EXAMPLE 1:
+-------
+//protytpe and __proto__
+undefined
+var o = Object.create(null)
+undefined
+o
+{}No properties
+
+EXAMPLE 2:
+-----------
+var o = {id: 32, name: "Atsu"}
+undefined
+o
+{id: 32, name: "Atsu"}
+id: 32name: "Atsu"__proto__: Objectconstructor: ƒ Object()hasOwnProperty: ƒ hasOwnProperty()isPrototypeOf: ƒ isPrototypeOf()propertyIsEnumerable: ƒ propertyIsEnumerable()toLocaleString: ƒ toLocaleString()toString: ƒ toString()valueOf: ƒ valueOf()__defineGetter__: ƒ __defineGetter__()__defineSetter__: ƒ __defineSetter__()__lookupGetter__: ƒ __lookupGetter__()__lookupSetter__: ƒ __lookupSetter__()get __proto__: ƒ __proto__()set __proto__: ƒ __proto__()
+var a = ["felix"]
+undefined
+a
+["felix"]0: "felix"length: 1__proto__: Array(0)concat: ƒ concat()arguments: (...)caller: (...)length: 1name: "concat"__proto__: ƒ ()[[Scopes]]: Scopes[0]constructor: ƒ Array()arguments: (...)caller: (...)from: ƒ from()isArray: ƒ isArray()length: 1name: "Array"of: ƒ of()prototype: [constructor: ƒ, concat: ƒ, copyWithin: ƒ, fill: ƒ, find: ƒ, …]Symbol(Symbol.species): (...)get Symbol(Symbol.species): ƒ [Symbol.species]()__proto__: ƒ ()[[Scopes]]: Scopes[0]copyWithin: ƒ copyWithin()entries: ƒ entries()every: ƒ every()fill: ƒ fill()filter: ƒ filter()find: ƒ find()findIndex: ƒ findIndex()flat: ƒ flat()flatMap: ƒ flatMap()forEach: ƒ forEach()includes: ƒ includes()indexOf: ƒ indexOf()join: ƒ join()keys: ƒ keys()lastIndexOf: ƒ lastIndexOf()length: 0map: ƒ map()pop: ƒ pop()push: ƒ push()reduce: ƒ reduce()reduceRight: ƒ reduceRight()reverse: ƒ reverse()shift: ƒ shift()slice: ƒ slice()some: ƒ some()sort: ƒ sort()splice: ƒ splice()toLocaleString: ƒ toLocaleString()toString: ƒ toString()unshift: ƒ unshift()values: ƒ values()Symbol(Symbol.iterator): ƒ values()Symbol(Symbol.unscopables): {copyWithin: true, entries: true, fill: true, find: true, findIndex: true, …}__proto__: Object
+function Entity(id, name){
+   this.id = id;
+   this.name = name;
+
+}
+undefined
+console.dir(Entity)
+VM2606:1 ƒ Entity(id, name)arguments: nullcaller: nulllength: 2name: "Entity"prototype: {constructor: ƒ}__proto__: ƒ ()apply: ƒ apply()arguments: (...)bind: ƒ bind()call: ƒ call()caller: (...)constructor: ƒ Function()length: 0name: ""toString: ƒ toString()Symbol(Symbol.hasInstance): ƒ [Symbol.hasInstance]()get arguments: ƒ ()set arguments: ƒ ()get caller: ƒ ()set caller: ƒ ()__proto__: Object[[FunctionLocation]]: <unknown>[[Scopes]]: Scopes[0][[FunctionLocation]]: VM2543:1[[Scopes]]: Scopes[1]
+undefined
+
+
+FINAL NOTE:
+//Prototype is a property of a function constructor
+//__proto is a property of an instance created from constructor
+
+EXAMPLE 3:
+------------
+
+var Party = function(firstName, lastName, age, role){
+this.firstName = firstName;
+this.lastName = lastName;
+this.age = age;
+this.role = role;
+this.getFullName = function(){
+
+return this.firstName + ' ' + this.lastName;
+}
+
+
+}
+undefined
+var user1 = new Party("Felix", "Ackuayi", 30, "engineer")
+undefined
+user1
+Party {firstName: "Felix", lastName: "Ackuayi", age: 30, role: "engineer", getFullName: ƒ}
+age: 30
+firstName: "Felix"
+getFullName: ƒ ()
+lastName: "Ackuayi"
+role: "engineer"
+__proto__: Object
+var user1 = new Party("Eric", "Doe", 24, "civil engineer")
+undefined
+user1
+Party {firstName: "Eric", lastName: "Doe", age: 24, role: "civil engineer", getFullName: ƒ}
+age: 24
+firstName: "Eric"
+getFullName: ƒ ()
+lastName: "Doe"
+role: "civil engineer"
+__proto__: Object
+
+
+EXAMPLE 6:
+---------
+
+var Party = function(firstName, lastName, age, role){
+this.firstName = firstName;
+this.lastName = lastName;
+this.age = age;
+this.role = role;
+
+}
+undefined
+Party.prototype.getFullName = function(){
+
+return this.firstName + ' ' + this.lastName;
+}
+ƒ (){
+
+return this.firstName + ' ' + this.lastName;
+}
+var user1 = new Party("Eric", "Doe", 24, "civil engineer")
+undefined
+user1
+Party {firstName: "Eric", lastName: "Doe", age: 24, role: "civil engineer"}age: 24firstName: "Eric"lastName: "Doe"role: "civil engineer"__proto__: ObjectgetFullName: ƒ ()constructor: ƒ (firstName, lastName, age, role)__proto__: Object
+user1.getFullName()
+"Eric Doe"
+
+================================END OBJECT PROTOTYPE AND PROTOTYPE CHAIN ============================================================================
+
+================================OBJECT INHERITANCE ============================================================================
+Inheritance is when one object get access to the another object properties and methods.
+
+Every JS object has a prototype property, which makes inheritance possible in JS.
+
+The prototype property of an object is where we put methods and properties that we want other objects to inherit
+
+When a certain method (or property) is called, the search starts in the object itself and if it cannot be found, the search moves on to the objects prototype. This continues until the method
+is found: prototype chain
+
+EXAMPLE 1:
+
+//Constructor animal
+undefined
+function Animal(name, age){
+ this.name = name;
+this.age=age;
+
+}
+undefined
+Animal.prototype.eats=function(){
+   console.log(this.name + ' is eating ');
+}
+ƒ (){
+   console.log(this.name + ' is eating ');
+}
+function Dog(name, age, breed){
+  //this.name=name;
+  //this.age=age;
+  Animal.call(this, name, age)
+  this.breed=breed;
+  this.logBreed = function(){
+  console.log(this.name + ' is a ' + this.breed)
+
+  }
+}
+undefined
+var d1 = new Dog("d1", 2, "bulldog")
+undefined
+d1
+Dog {name: "d1", age: 2, breed: "bulldog", logBreed: ƒ}age: 2breed: "bulldog"logBreed: ƒ ()name: "d1"__proto__: Object
+d1.eats()
+VM4717:1 Uncaught TypeError: d1.eats is not a function
+    at <anonymous>:1:4
+(anonymous) @ VM4717:1
+
+
+EXAMPLE 2
+----------------
+function Dog(name, age, breed){
+  //this.name=name;
+  //this.age=age;
+  Animal.call(this, name, age)
+
+  this.breed=breed;
+  this.logBreed = function(){
+  console.log(this.name + ' is a ' + this.breed)
+
+  }
+}
+undefined
+Dog.prototype = Object.create(Animal.prototype)
+Animal {}
+var d2 = new Dog ("d2", 2, "bulldog")
+undefined
+d2
+Dog {name: "d2", age: 2, breed: "bulldog", logBreed: ƒ}
+================================END OBJECT INHERITANCE ============================================================================
+
+================================CLASS AND CLASS INHERITANCE ============================================================================
+A class is a type of function, but instead of using the keyword function to initiate it, we use the keyword class, and the properties are assigned inside a constructor()
+methos
+
+Syntax:
+class className{
+constructor(){
+
+}
+
+}
+
+
+EXAMPLE 1:
+-----------
+class Animal1{
+  constructor (name, age){
+  console.log(name + ' is an animal and was created');
+  this.name = name;
+  this.age = age;
+
+  }
+
+   eats(){
+    console.log(this.name + ' is eating');
+
+   }
+}
+undefined
+var animal1 = new Animal1('animal1 = ', 2)
+VM5299:3 animal1 =  is an animal and was created
+undefined
+animal1
+Animal1 {name: "animal1 = ", age: 2}
+age: 2
+name: "animal1 = "
+__proto__: Object
+
+animal1.eats()
+VM5299:10 animal1 =  is eating
+undefined
+
+
+Example 2:
+-------------------
+//Inheritance(CLASS)
+class Dog1{
+  constructor (breed){
+
+  this.breed = breed;
+
+  }
+
+   logBreed(){
+    console.log(this.breed);
+
+   }
+}
+undefined
+var dog = new Dog1("Sheperd Breed");
+undefined
+dog
+Dog1 {breed: "Sheperd Breed"}breed: "Sheperd Breed"__proto__: Object
+//Now we have two classes available (Animal and Dog1)
+undefined
+class Dog1 extends Animal1{
+
+   constructor(name, age, breed){
+     super(name, age);
+     this.breed = breed;
+
+   }
+
+  logBreed(){
+   console.log(this.name + ' is a ' + this.breed)
+
+  }
+}
+undefined
+var dogs1 = new Dog1("Dog1', '4', 'Bulldog')
+VM6422:1 Uncaught SyntaxError: Invalid or unexpected token
+var dogs1 = new Dog1('Dog1', '4', 'Bulldog')
+VM5299:3 Dog1 is an animal and was created
+undefined
+dogs1
+Dog1 {name: "Dog1", age: "4", breed: "Bulldog"}age: "4"breed: "Bulldog"name: "Dog1"__proto__: Animal1
+
+
+dogs1.eats()
+VM5299:10 Dog1 is eating
+undefined
+
+
+EXAMPLE 3:
+---------------
+
+================================END CLASS AND CLASS INHERITANCE ============================================================================
+
+================================JavaScript Decorators ============================================================================
+- Is simply a way of wrapping one piece of code with another
+- This is a concept you might well have heard of previously as functional composition, or higher-order functions
+-Decorator function takes target, name and descriptor as arguments
+
+EXAMPLE
+---------
+
+class Greet{
+    @readonly
+    greeting(){
+        return 'hello';
+    }
+}
+
+var greet = new Greet()
+console.log("1", greet.greeting())
+
+function readonly(target, name, descriptor){//name is the name of the method called greeting(), target is the whole method ,
+    descriptor.writable =false
+    return descriptor
+
+}
+
+greet.greeting = () => "huraay"
+console.log("2", greet.greeting())
+
+
+================================End JavaScript Decorators ============================================================================
+
+================================Modules export in JS ============================================================================
+Named exports - Named exports get used when we have many exports per file
+
+There are two ways of Named exports
+1. export individually
+2. Export together
+
+Default exports- This get used when we have only one export per file. We need to append export default keyword in front to make a variable, function, or object a default export. It is deneficial when we create a utilities
+file or constants file
+
+
+================================Modules export in JS ============================================================================
